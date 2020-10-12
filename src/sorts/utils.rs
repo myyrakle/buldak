@@ -1,7 +1,7 @@
 use std::cmp::Ordering;
 use std::mem;
 
-fn swap<T>(x: &mut [T], i: usize, j: usize) {
+pub fn swap<T>(x: &mut [T], i: usize, j: usize) {
     let (lo, hi) = match i.cmp(&j) {
         // no swapping necessary
         Ordering::Equal => return,

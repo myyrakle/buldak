@@ -1,22 +1,14 @@
-pub fn bubble_sort(arr: &mut std::vec::Vec<i32>) {
-    let len = arr.len();
-    let mut i = 0;
-
-    while (i + 1) < len {
-        let mut j = i;
-
-        while (j + 1) < len {
-            if arr[j] > arr[j + 1] {
-                arr.swap(j, j + 1);
-            }
-            j += 1;
-        }
-        i += 1;
-    }
-}
+pub mod lib;
+pub use lib::*;
 
 fn main() {
-    let mut nums = vec![1, 4, 2, 3, 5];
-    bubble_sort(&mut nums);
+    let mut nums = vec![1, 4, 2, 3, 5, 111, 234, 21, 13];
+    bubble_sort_reverse(&mut nums);
+    //println!("{:?}", 1.cmp(&4));
+    // bubble_sort_by(&mut nums, |l, r| match l.cmp(r) {
+    //     std::cmp::Ordering::Greater => std::cmp::Ordering::Less,
+    //     std::cmp::Ordering::Less => std::cmp::Ordering::Greater,
+    //     _ => std::cmp::Ordering::Equal,
+    // });
     println!("{:?}", nums);
 }
