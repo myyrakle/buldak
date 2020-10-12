@@ -14,6 +14,10 @@ where
     bubble_sort_by(arr, |l, r| l.cmp(r).reverse())
 }
 
+/// bubble sort.
+/// ```
+/// bubble_sort_by(arr, |l, r| l.cmp(r));
+/// ```
 pub fn bubble_sort_by<T, F>(arr: &mut [T], compare: F)
 where
     T: std::cmp::Ord,
