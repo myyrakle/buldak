@@ -1,3 +1,3 @@
-#[path = "sorts.rs"]
-pub mod sorts;
-pub use sorts::*;
+#[path = "./lib/bubble.rs"]
+pub mod bubble;
+pub use bubble::*;

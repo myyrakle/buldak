@@ -1,4 +1,4 @@
-use super::utils;
+mod utils;
 
 pub fn bubble_sort<T>(arr: &mut [T])
 where
