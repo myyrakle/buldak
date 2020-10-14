@@ -1,9 +1,20 @@
 pub mod lib;
 pub use lib::*;
 
+fn first<N>(n: N) -> usize
+where
+    N: std::convert::TryInto<usize>,
+    <N as std::convert::TryInto<usize>>::Error: std::fmt::Debug,
+{
+    let i: usize = n.try_into().unwrap();
+    let mut nums = vec![1, 4, 2, 3, 5, 111, 234, 21, 13];
+    nums[i]
+}
+
 fn main() {
-    let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
-    bubble::sort_by(&mut nums, |l, r| l.cmp(r));
-    //assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1]);
-    println!("{:?}", nums);
+    let v = vec![0; 10];
+
+    for e in v.iter().rev() {
+        println!("{}", e);
+    }
 }
