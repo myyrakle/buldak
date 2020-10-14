@@ -28,6 +28,7 @@ fn main()
 
 ## features
 - bubble sort
+- smart bubble sort
 - selection sort
 - double selection sort
 - counting sort
@@ -40,6 +41,9 @@ fn main()
 
 #[path = "lib/bubble.rs"]
 pub mod bubble;
+
+#[path = "lib/smart_bubble.rs"]
+pub mod smart_bubble;
 
 #[path = "lib/selection.rs"]
 pub mod selection;
