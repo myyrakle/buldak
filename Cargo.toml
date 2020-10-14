@@ -1,21 +1,16 @@
 [package]
 name = "buldak"
-version = "0.0.2"
+version = "0.0.3"
 authors = ["myyrakle <sssang97@naver.com>"]
 edition = "2018"
-description = "Boilerplate collection for epoch timestamping" #그냥 설명문
-keywords = ["epoch", "timestamp", "unix", "unixtime"] #검색용 키워드
-license = "MIT" #라이센스
-include = ["src/lib.rs", "src/lib/*", "Cargo.toml"] #업로드 대상
-exclude = [] #업로드 제외
-readme = "README.md" #crate 페이지의 소개문 파일
-repository = "https://github.com/myyrakle/buldak" #레포지토리
-documentation = "https://github.com/myyrakle/buldak/blob/master/README.md" #문서 사이트
-homepage = "https://github.com/myyrakle/buldak/blob/master/README.md" #홈페이지 사이트
-
-[package.metadata.docs.rs]
-rustc-args = ["--cfg", "docsrs"]
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = "It is a library that provides various sorting functions." 
+keywords = ["sort", "algorithm"] 
+license = "MIT" 
+include = ["src/lib.rs", "src/lib/*", "Cargo.toml"] 
+exclude = ["src/main.rs"] 
+readme = "README.md" 
+repository = "https://github.com/myyrakle/buldak" 
+documentation = "https://docs.rs/buldak" 
+homepage = "https://docs.rs/buldak" 
 
 [dependencies]
