@@ -1,3 +1,5 @@
+//! bubble sort algorithm
+
 mod utils;
 
 /**

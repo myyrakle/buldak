@@ -28,6 +28,7 @@ fn main()
 
 ## features
 - bubble sort
+- counting sort
 - ... more later
 */
 
