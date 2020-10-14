@@ -2,8 +2,9 @@ mod utils;
 
 pub fn sort_core<T, Hint>(array: &mut [T], max: Hint, asc: bool, signed: bool)
 where
-    T: std::convert::TryInto<isize> + std::clone::Clone,
+    T: std::convert::TryInto<isize> + std::convert::TryFrom<isize> + std::clone::Clone,
     <T as std::convert::TryInto<isize>>::Error: std::fmt::Debug,
+    <T as std::convert::TryFrom<isize>>::Error: std::fmt::Debug,
     Hint: std::convert::TryInto<isize>,
     <Hint as std::convert::TryInto<isize>>::Error: std::fmt::Debug,
 {
@@ -13,7 +14,7 @@ where
     let max: usize = if max >= 0 { max } else { max * -1 } as usize;
 
     let mut pos_count = vec![0; max];
-    let mut neg_count = vec![0; max]; // except 0
+    let mut neg_count = if signed { vec![0; max] } else { vec![] }; // except 0
 
     let mut i = 0;
 
@@ -25,24 +26,59 @@ where
         if e >= 0 {
             let count_index = e as usize;
             pos_count[count_index] += 1;
-        } else {
-            let count_index = (e - 1) as usize;
+        } else if signed {
+            let count_index = (e * -1 + 1) as usize;
             neg_count[count_index] += 1;
+        } else {
+            panic!("Now this Function can only receive natural numbers, but they contain negative numbers.");
         }
 
         i += 1;
     }
 
-    let mut i = 0;
+    let mut total_index = 0;
 
-    let firstIter: Box<dyn Iterator<Item = T>> =  Box::new(neg_count.iter().rev())
-    // let firstIter = if asc {
-    //     Box::new(neg_count.iter().rev())
-    // } else {
-    //     Box::new(pos_count.iter())
-    // };
+    if asc {
+        if signed {
+            for i in (0..neg_count.len()).rev() {
+                for _ in 0..neg_count[i] {
+                    let value: T = T::try_from(i as isize * -1 - 1).unwrap();
+                    array[total_index] = value;
 
-    for e in firstIter {}
+                    total_index += 1;
+                }
+            }
+        }
+
+        for i in 0..pos_count.len() {
+            for _ in 0..pos_count[i] {
+                let value: T = T::try_from(i as isize).unwrap();
+                array[total_index] = value;
+
+                total_index += 1;
+            }
+        }
+    } else {
+        for i in (0..pos_count.len()).rev() {
+            for _ in 0..pos_count[i] {
+                let value: T = T::try_from(i as isize).unwrap();
+                array[total_index] = value;
+
+                total_index += 1;
+            }
+        }
+
+        if signed {
+            for i in 0..neg_count.len() {
+                for _ in 0..neg_count[i] {
+                    let value: T = T::try_from(i as isize * -1 - 1).unwrap();
+                    array[total_index] = value;
+
+                    total_index += 1;
+                }
+            }
+        }
+    };
 }
 
 /**
