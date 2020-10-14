@@ -39,5 +39,8 @@ fn main()
 #[path = "lib/bubble.rs"]
 pub mod bubble;
 
+#[path = "lib/selection.rs"]
+pub mod selection;
+
 #[path = "lib/counting.rs"]
 pub mod counting;
