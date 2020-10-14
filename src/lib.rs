@@ -30,6 +30,10 @@ fn main()
 - bubble sort
 - counting sort
 - ... more later
+
+## link
+- [document](https://docs.rs/buldak)
+- [repository](https://github.com/myyrakle/buldak)
 */
 
 #[path = "lib/bubble.rs"]
