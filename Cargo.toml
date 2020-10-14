@@ -1,6 +1,6 @@
 [package]
 name = "buldak"
-version = "0.0.3"
+version = "0.0.4"
 authors = ["myyrakle <sssang97@naver.com>"]
 edition = "2018"
 description = "It is a library that provides various sorting functions." 
