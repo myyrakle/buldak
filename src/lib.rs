@@ -33,6 +33,7 @@ fn main()
 - selection sort
 - double selection sort
 - insertion sort
+- stooge sort
 - quick sort
 - merge sort
 - heap sort
@@ -62,6 +63,9 @@ pub mod insertion;
 
 #[path = "lib/double_selection.rs"]
 pub mod double_selection;
+
+#[path = "lib/stooge.rs"]
+pub mod stooge;
 
 #[path = "lib/quick.rs"]
 pub mod quick;
