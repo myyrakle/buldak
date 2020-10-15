@@ -11,11 +11,11 @@ bubble::sort(&mut nums);
 assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
 ```
 */
-pub fn sort<T>(arr: &mut [T])
+pub fn sort<T>(array: &mut [T])
 where
     T: std::cmp::Ord,
 {
-    sort_by(arr, |l, r| l.cmp(r))
+    sort_by(array, |l, r| l.cmp(r))
 }
 
 /** Sort in descending order using a bubble sort algorithm.
@@ -26,11 +26,11 @@ bubble::sort_reverse(&mut nums);
 assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1]);
 ```
 */
-pub fn sort_reverse<T>(arr: &mut [T])
+pub fn sort_reverse<T>(array: &mut [T])
 where
     T: std::cmp::Ord,
 {
-    sort_by(arr, |l, r| l.cmp(r).reverse())
+    sort_by(array, |l, r| l.cmp(r).reverse())
 }
 
 /**
@@ -43,20 +43,20 @@ bubble::sort_by(&mut nums, |l, r| l.cmp(r));
 assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
 ```
 */
-pub fn sort_by<T, F>(arr: &mut [T], compare: F)
+pub fn sort_by<T, F>(array: &mut [T], compare: F)
 where
     T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering,
 {
-    let mut last = arr.len();
+    let mut last = array.len();
 
     while 0 != last {
         let mut i = 0;
 
         while (i + 1) < last {
-            match compare(&arr[i], &arr[i + 1]) {
+            match compare(&array[i], &array[i + 1]) {
                 std::cmp::Ordering::Less => (),
-                std::cmp::Ordering::Greater => utils::swap(arr, i, i + 1),
+                std::cmp::Ordering::Greater => utils::swap(array, i, i + 1),
                 std::cmp::Ordering::Equal => (),
             }
             i += 1;
