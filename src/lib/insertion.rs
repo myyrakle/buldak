@@ -13,7 +13,7 @@ assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
 */
 pub fn sort<T>(arr: &mut [T])
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord + std::clone::Clone + std::fmt::Debug,
 {
     sort_by(arr, |l, r| l.cmp(r))
 }
@@ -28,7 +28,7 @@ assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1]);
 */
 pub fn sort_reverse<T>(arr: &mut [T])
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord + std::clone::Clone + std::fmt::Debug,
 {
     sort_by(arr, |l, r| l.cmp(r).reverse())
 }
@@ -45,7 +45,7 @@ assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
 */
 pub fn sort_by<T, F>(arr: &mut [T], compare: F)
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord + std::clone::Clone + std::fmt::Debug,
     F: Fn(&T, &T) -> std::cmp::Ordering,
 {
     let mut start = 1;
@@ -56,19 +56,16 @@ where
 
         let mut back = start - 1;
 
+        println!("전 {:?}", arr);
         while back != 0 && compare(&target, &arr[back]) == std::cmp::Ordering::Less {
             arr[back + 1] = arr[back].clone();
             back -= 1;
         }
 
-        if compare(&target, &arr[start]) == std::cmp::Ordering::Less {
-            arr[back + 1] = arr[back].clone();
-        } else {
-            back += 1;
-        }
-
-        arr[back] = target;
+        arr[back + 1] = target;
 
         start += 1;
+
+        println!("후 {:?}", arr);
     }
 }

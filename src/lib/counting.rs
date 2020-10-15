@@ -1,6 +1,6 @@
 //! counting sort algorithm
 
-fn _sort_core<T, Max>(array: &mut [T], max: Max, asc: bool, signed: bool) -> Result<(), String>
+fn _sort_impl<T, Max>(array: &mut [T], max: Max, asc: bool, signed: bool) -> Result<(), String>
 where
     T: std::convert::TryInto<isize> + std::convert::TryFrom<isize> + std::clone::Clone,
     <T as std::convert::TryInto<isize>>::Error: std::fmt::Debug,
@@ -117,7 +117,7 @@ where
     Max: std::convert::TryInto<isize>,
     <Max as std::convert::TryInto<isize>>::Error: std::fmt::Debug,
 {
-    _sort_core(array, max, true, signed)
+    _sort_impl(array, max, true, signed)
 }
 
 /** Sort in descending order using a bubble counting algorithm.
@@ -143,5 +143,5 @@ where
     Max: std::convert::TryInto<isize>,
     <Max as std::convert::TryInto<isize>>::Error: std::fmt::Debug,
 {
-    _sort_core(array, max, false, signed)
+    _sort_impl(array, max, false, signed)
 }
