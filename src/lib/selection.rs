@@ -1,4 +1,6 @@
-//! selection sort algorithm
+//! selection sort algorithm.
+//!
+//! **O(N²)**
 
 mod utils;
 

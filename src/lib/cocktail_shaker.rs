@@ -1,4 +1,6 @@
-//! cocktail shaker sort algorithm
+//! cocktail shaker sort algorithm.
+//!
+//! **O(N²)**
 
 mod utils;
 

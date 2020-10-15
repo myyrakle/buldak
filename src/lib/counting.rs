@@ -1,4 +1,6 @@
-//! counting sort algorithm
+//! counting sort algorithm.
+//!
+//! **O(N)**
 
 fn _counting_impl<T, Max>(array: &mut [T], max: Max, asc: bool, signed: bool) -> Result<(), String>
 where

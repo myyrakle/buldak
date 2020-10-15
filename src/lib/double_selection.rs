@@ -1,4 +1,6 @@
-//! double selection sort algorithm
+//! double selection sort algorithm.
+//!
+//! **O(N²)**
 
 mod utils;
 

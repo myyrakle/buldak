@@ -1,4 +1,7 @@
-//! smart bubble sort algorithm
+//! smart bubble sort algorithm.
+//!
+//! **O(N²)**
+//!
 //! This algorithm eliminates unnecessary repetitions in bubble sort.
 
 mod utils;

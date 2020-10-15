@@ -1,4 +1,6 @@
-//! quick sort algorithm
+//! quick sort algorithm.
+//!
+//! **average:O(Nlog₂N), worst:O(N²)**
 
 mod utils;
 

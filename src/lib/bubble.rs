@@ -1,4 +1,6 @@
-//! bubble sort algorithm
+//! bubble sort algorithm.
+//!
+//! **O(N²)**
 
 mod utils;
 

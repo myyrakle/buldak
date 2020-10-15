@@ -1,4 +1,6 @@
-//! merge sort algorithm
+//! merge sort algorithm.
+//!
+//! **O(Nlog₂N)**
 
 /**
 Sort in ascending order using a merge sort algorithm.
