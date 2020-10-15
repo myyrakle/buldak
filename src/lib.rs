@@ -31,6 +31,7 @@ fn main()
 - smart bubble sort
 - selection sort
 - double selection sort
+- insertion sort
 - counting sort
 - ... more later
 
