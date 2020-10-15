@@ -1,6 +1,6 @@
 //! stooge sort algorithm.
 //!
-//! **O(N^<sub><sup>log 3/log 1.5</sup></sub>)**
+//! **O(N<sup>2.7095...</sup>)**
 
 mod utils;
 
@@ -72,14 +72,16 @@ where
     T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
+    // If the leftmost element is larger than the rightmost element
     if compare(&array[i], &array[j]) == std::cmp::Ordering::Greater {
         utils::swap(array, i, j);
     }
 
+    // If there are at least 3 elements in the array
     if j - i + 1 > 2 {
         let k = (j - i + 1) / 3;
         _stooge_sort_impl(array, i, j - k, compare.clone()); // Sort the first 2/3 of the array
         _stooge_sort_impl(array, i + k, j, compare.clone()); // Sort the last 2/3 of the array
-        _stooge_sort_impl(array, i, j - k, compare);
+        _stooge_sort_impl(array, i, j - k, compare); // Sort the first 2/3 of the array again
     }
 }
