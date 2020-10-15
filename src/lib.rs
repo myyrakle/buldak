@@ -29,6 +29,7 @@ fn main()
 ## features
 - bubble sort
 - smart bubble sort
+- cocktail shaker sort
 - selection sort
 - double selection sort
 - insertion sort
@@ -47,6 +48,9 @@ pub mod bubble;
 
 #[path = "lib/smart_bubble.rs"]
 pub mod smart_bubble;
+
+#[path = "lib/cocktail_shaker.rs"]
+pub mod cocktail_shaker;
 
 #[path = "lib/selection.rs"]
 pub mod selection;
