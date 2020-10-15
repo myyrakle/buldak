@@ -35,6 +35,7 @@ fn main()
 - insertion sort
 - quick sort
 - merge sort
+- heap sort
 - counting sort
 - bogo sort
 - ... more later
@@ -67,6 +68,9 @@ pub mod quick;
 
 #[path = "lib/merge.rs"]
 pub mod merge;
+
+#[path = "lib/heap.rs"]
+pub mod heap;
 
 #[path = "lib/counting.rs"]
 pub mod counting;
