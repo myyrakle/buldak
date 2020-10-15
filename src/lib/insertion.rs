@@ -1,7 +1,5 @@
 //! insertion sort algorithm
 
-mod utils;
-
 /**
 Sort in ascending order using a insertion sort algorithm.
 

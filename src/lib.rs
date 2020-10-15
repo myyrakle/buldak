@@ -32,6 +32,7 @@ fn main()
 - selection sort
 - double selection sort
 - insertion sort
+- quick sort
 - counting sort
 - ... more later
 
@@ -54,6 +55,9 @@ pub mod insertion;
 
 #[path = "lib/double_selection.rs"]
 pub mod double_selection;
+
+#[path = "lib/quick.rs"]
+pub mod quick;
 
 #[path = "lib/counting.rs"]
 pub mod counting;
