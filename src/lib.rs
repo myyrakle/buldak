@@ -48,6 +48,9 @@ pub mod smart_bubble;
 #[path = "lib/selection.rs"]
 pub mod selection;
 
+#[path = "lib/insertion.rs"]
+pub mod insertion;
+
 #[path = "lib/double_selection.rs"]
 pub mod double_selection;
 

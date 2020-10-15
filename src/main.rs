@@ -3,7 +3,7 @@ pub use lib::*;
 
 fn main() {
     let mut v = vec![1, 4, 2, 3, 5, 111, 234, 21, 13];
-    smart_bubble::sort_reverse(&mut v);
+    insertion::sort(&mut v);
 
     println!("{:?}", v);
 }
