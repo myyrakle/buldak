@@ -36,6 +36,7 @@ fn main()
 - quick sort
 - merge sort
 - counting sort
+- bogo sort
 - ... more later
 
 ## link
@@ -69,3 +70,6 @@ pub mod merge;
 
 #[path = "lib/counting.rs"]
 pub mod counting;
+
+#[path = "lib/bogo.rs"]
+pub mod bogo;
