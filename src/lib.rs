@@ -3,11 +3,11 @@ It is a library that provides various sorting functions.
 
 ## install
 If cargo-edit is installed, you can install it like this:
-```
+```sh
 cargo add buldak
 ```
 If not, you have to manually add the dependency to Cargo.toml.
-```
+```toml
 [dependencies]
 buldak = "*"
 ```
@@ -15,7 +15,7 @@ buldak = "*"
 ## use
 If you have performed the installation process well,
 you can sort by passing the values ​​in an array format as follows.
-```
+```rust
 use buldak::*;
 
 fn main()

@@ -95,22 +95,22 @@ where
     return Ok(());
 }
 
-/**
-Sort in ascending order using a counting sort algorithm.
-
-The parameter 'max' is the absolute maximum value of the received array.
-Any elements beyond this value will result in an error.
-
-The parameter 'signed' chooses whether to support negative numbers.
-When using only natural numbers, it is twice as efficient to set signed to false.
-If signed is set to false and the array contains negative elements, an error occurs.
-
-```
-let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
-counting::sort(&mut nums, 300, true);
-assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
-```
-*/
+/// Sort in ascending order using a counting sort algorithm.
+/// 
+/// The parameter 'max' is the absolute maximum value of the received array.
+/// Any elements beyond this value will result in an error.
+/// 
+/// The parameter 'signed' chooses whether to support negative numbers.
+/// When using only natural numbers, it is twice as efficient to set signed to false.
+/// If signed is set to false and the array contains negative elements, an error occurs.
+/// 
+/// ```rust
+/// use buldak::counting;
+///
+/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
+/// counting::sort(&mut nums, 300, true);
+/// assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
+/// ```
 pub fn sort<T, Max>(array: &mut [T], max: Max, signed: bool) -> Result<(), String>
 where
     T: std::convert::TryInto<isize> + std::convert::TryFrom<isize> + std::clone::Clone,
@@ -122,21 +122,22 @@ where
     _counting_impl(array, max, true, signed)
 }
 
-/** Sort in descending order using a bubble counting algorithm.
-
-The parameter 'max' is the absolute maximum value of the received array.
-Any elements beyond this value will result in an error.
-
-The parameter 'signed' chooses whether to support negative numbers.
-When using only natural numbers, it is twice as efficient to set signed to false.
-If signed is set to false and the array contains negative elements, an error occurs.
-
-```
-let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
-counting::sort_reverse(&mut nums);
-assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1]);
-```
-*/
+/// Sort in descending order using a bubble counting algorithm.
+/// 
+/// The parameter 'max' is the absolute maximum value of the received array.
+/// Any elements beyond this value will result in an error.
+/// 
+/// The parameter 'signed' chooses whether to support negative numbers.
+/// When using only natural numbers, it is twice as efficient to set signed to false.
+/// If signed is set to false and the array contains negative elements, an error occurs.
+/// 
+/// ```compile_fail
+/// use buldak::counting;
+///
+/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
+/// counting::sort_reverse(&mut nums);
+/// assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1]);
+/// ```
 pub fn sort_reverse<T, Max>(array: &mut [T], max: Max, signed: bool) -> Result<(), String>
 where
     T: std::convert::TryInto<isize> + std::convert::TryFrom<isize> + std::clone::Clone,
