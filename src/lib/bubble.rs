@@ -4,30 +4,33 @@
 
 mod utils;
 
-/**
-Sort in ascending order using a bubble sort algorithm.
+/// Sort in ascending order using a bubble sort algorithm.
+/// 
+/// ```rust
+/// use buldak::bubble;
+///
+/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
+/// bubble::sort(&mut nums);
+/// assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
+/// ```
 
-```
-let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
-bubble::sort(&mut nums);
-assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
-```
-*/
 pub fn sort<T>(array: &mut [T])
 where
-    T: std::cmp::Ord,
+   T: std::cmp::Ord,
 {
     sort_by(array, |l, r| l.cmp(r))
 }
 
-/** Sort in descending order using a bubble sort algorithm.
-
-```
-let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
-bubble::sort_reverse(&mut nums);
-assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1]);
-```
-*/
+/// Sort in descending order using a bubble sort algorithm.
+/// 
+/// ```rust
+/// use buldak::bubble;
+///
+/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
+/// bubble::sort_reverse(&mut nums);
+/// assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1]);
+/// ```
+/// 
 pub fn sort_reverse<T>(array: &mut [T])
 where
     T: std::cmp::Ord,
@@ -35,16 +38,17 @@ where
     sort_by(array, |l, r| l.cmp(r).reverse())
 }
 
-/**
-It takes a comparator function to determine the order,
-and sorts it using a bubble sort algorithm.
-
-```
-let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
-bubble::sort_by(&mut nums, |l, r| l.cmp(r));
-assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
-```
-*/
+/// It takes a comparator function to determine the order,
+/// and sorts it using a bubble sort algorithm.
+/// 
+/// ```rust
+/// use buldak::bubble;
+///
+/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
+/// bubble::sort_by(&mut nums, |l, r| l.cmp(r));
+/// assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
+/// ```
+///
 pub fn sort_by<T, F>(array: &mut [T], compare: F)
 where
     T: std::cmp::Ord,
