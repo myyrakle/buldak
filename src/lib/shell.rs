@@ -71,3 +71,10 @@ where
         _stooge_sort_impl(array, i, j - k, compare); // Sort the first 2/3 of the array again
     }
 }
+
+#[test]
+fn test() {
+    let mut v = vec![1, 3, 2, 5, 4];
+    sort(&mut v);
+    assert_eq!([1, 2, 3, 4, 5], v);
+}
