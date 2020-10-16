@@ -67,6 +67,9 @@ pub mod double_selection;
 #[path = "lib/stooge.rs"]
 pub mod stooge;
 
+#[path = "lib/gnome.rs"]
+pub mod gnome;
+
 #[path = "lib/quick.rs"]
 pub mod quick;
 

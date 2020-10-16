@@ -48,40 +48,24 @@ assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
 pub fn sort_by<T, F>(array: &mut [T], compare: F)
 where
     T: std::cmp::Ord,
-    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering,
 {
-    let mut last = array.len();
-
-    while 0 != last {
-        let mut i = 0;
-
-        while (i + 1) < last {
-            match compare(&array[i], &array[i + 1]) {
-                std::cmp::Ordering::Less => (),
-                std::cmp::Ordering::Greater => utils::swap(array, i, i + 1),
-                std::cmp::Ordering::Equal => (),
-            }
-            i += 1;
-        }
-        last -= 1;
-    }
+    _gnome_sort_impl(array, compare);
 }
 
-fn _stooge_sort_impl<T, F>(array: &mut [T], i: usize, j: usize, compare: F)
+fn _gnome_sort_impl<T, F>(array: &mut [T], compare: F)
 where
     T: std::cmp::Ord,
-    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering,
 {
-    // If the leftmost element is larger than the rightmost element
-    if compare(&array[i], &array[j]) == std::cmp::Ordering::Greater {
-        utils::swap(array, i, j);
-    }
+    let mut pos = 0;
 
-    // If there are at least 3 elements in the array
-    if j - i + 1 > 2 {
-        let k = (j - i + 1) / 3;
-        _stooge_sort_impl(array, i, j - k, compare.clone()); // Sort the first 2/3 of the array
-        _stooge_sort_impl(array, i + k, j, compare.clone()); // Sort the last 2/3 of the array
-        _stooge_sort_impl(array, i, j - k, compare); // Sort the first 2/3 of the array again
+    while pos < array.len() {
+        if pos == 0 || compare(&array[pos], &array[pos - 1]) != std::cmp::Ordering::Less {
+            pos += 1;
+        } else {
+            utils::swap(array, pos, pos - 1);
+            pos -= 1;
+        }
     }
 }
