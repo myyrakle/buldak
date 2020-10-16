@@ -2,15 +2,15 @@
 //!
 //! **O(Nlog₂N)**
 
-/**
-Sort in ascending order using a heap sort algorithm.
-
-```
-let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
-heap::sort(&mut nums);
-assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
-```
-*/
+/// Sort in ascending order using a heap sort algorithm.
+/// 
+/// ```rust
+/// use buldak::heap;
+///
+/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
+/// heap::sort(&mut nums);
+/// assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
+/// ```
 pub fn sort<T>(array: &mut [T])
 where
     T: std::cmp::Ord + std::clone::Clone,
@@ -18,14 +18,15 @@ where
     _heap_sort_impl(array, false)
 }
 
-/** Sort in descending order using a heap sort algorithm.
-
-```
-let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
-heap::sort_reverse(&mut nums);
-assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1]);
-```
-*/
+/// Sort in descending order using a heap sort algorithm.
+/// 
+/// ```rust
+/// use buldak::heap;
+///
+/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
+/// heap::sort_reverse(&mut nums);
+/// assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1]);
+/// ```
 pub fn sort_reverse<T>(array: &mut [T])
 where
     T: std::cmp::Ord + std::clone::Clone,
