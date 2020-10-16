@@ -34,6 +34,7 @@ fn main()
 - double selection sort
 - insertion sort
 - stooge sort
+- gnome sort
 - quick sort
 - merge sort
 - heap sort
