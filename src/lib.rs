@@ -83,8 +83,8 @@ pub mod heap;
 #[path = "lib/counting.rs"]
 pub mod counting;
 
-#[path = "lib/radix.rs"]
-pub mod radix;
+//#[path = "lib/radix.rs"]
+//pub mod radix;
 
 #[path = "lib/bogo.rs"]
 pub mod bogo;
