@@ -3,6 +3,6 @@ pub use lib::*;
 
 fn main() {
     let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
-    radix::sort_reverse(&mut nums, 10, 4);
-    assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1]);
+    comb::sort_reverse(&mut nums);
+    println!("{:?}", nums);
 }

@@ -35,6 +35,7 @@ fn main()
 - insertion sort
 - stooge sort
 - gnome sort
+- comb sort
 - quick sort
 - merge sort
 - heap sort
@@ -71,6 +72,9 @@ pub mod stooge;
 
 #[path = "lib/gnome.rs"]
 pub mod gnome;
+
+#[path = "lib/comb.rs"]
+pub mod comb;
 
 #[path = "lib/quick.rs"]
 pub mod quick;
