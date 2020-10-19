@@ -1,4 +1,4 @@
-//! gnome comb algorithm.
+//! comb comb algorithm.
 //!
 //! **O(N²)**
 
