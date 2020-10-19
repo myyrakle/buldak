@@ -6,19 +6,21 @@ use std::convert::{TryFrom, TryInto};
 
 /// Sort in ascending order using a radix sort algorithm.
 ///
-/// The parameter 'max' is the absolute maximum value of the received array.
-/// Any elements beyond this value will result in an error.
+/// The parameter 'radix' is ​​the base on which to sort.
+/// If you want decimal based sorting, you can pass 10.
 ///
-/// The parameter 'signed' chooses whether to support negative numbers.
-/// When using only natural numbers, it is twice as efficient to set signed to false.
-/// If signed is set to false and the array contains negative elements, an error occurs.
+/// The parameter 'digits_max' is the maximum number of digits in the array.
+/// For example, if the maximum number in the array does not exceed 9999, you can pass 4.
+/// Any value beyond this number will cause an error.
 ///
-/// ```rsut
-/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
-/// radix::sort(&mut nums, 300, true);
-/// assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
+/// ```rust
+/// use buldak::radix;
+///
+/// let mut nums = [1, 4, 2, 3, 5, 111, -33, 234, 21, 13];
+/// radix::sort(&mut nums, 10, 4);
+/// assert_eq!(nums, [-33, 1, 2, 3, 4, 5, 13, 21, 111, 234]);
 /// ```
-pub fn sort<T>(array: &mut [T], digits_max: usize, radix: usize)
+pub fn sort<T>(array: &mut [T], radix: usize, digits_max: usize)
 where
     T: TryInto<isize> + TryFrom<isize> + std::clone::Clone,
     <T as TryInto<isize>>::Error: std::fmt::Debug,
@@ -28,19 +30,21 @@ where
 
 /// Sort in descending order using a radix algorithm.
 ///
-/// The parameter 'max' is the absolute maximum value of the received array.
-/// Any elements beyond this value will result in an error.
+/// The parameter 'radix' is ​​the base on which to sort.
+/// If you want decimal based sorting, you can pass 10.
 ///
-/// The parameter 'signed' chooses whether to support negative numbers.
-/// When using only natural numbers, it is twice as efficient to set signed to false.
-/// If signed is set to false and the array contains negative elements, an error occurs.
+/// The parameter 'digits_max' is the maximum number of digits in the array.
+/// For example, if the maximum number in the array does not exceed 9999, you can pass 4.
+/// Any value beyond this number will cause an error.
 ///
 /// ```rust
-/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
-/// radix::sort_reverse(&mut nums);
-/// assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1]);
+/// use buldak::radix;
+///
+/// let mut nums = [1, 4, 2, 3, 5, 111, -33, 234, 21, 13];
+/// radix::sort_reverse(&mut nums, 10, 4);
+/// assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1, -33]);
 /// ```
-pub fn sort_reverse<T>(array: &mut [T], digits_max: usize, radix: usize)
+pub fn sort_reverse<T>(array: &mut [T], radix: usize, digits_max: usize)
 where
     T: TryInto<isize> + TryFrom<isize> + std::clone::Clone,
     <T as TryInto<isize>>::Error: std::fmt::Debug,
@@ -93,14 +97,14 @@ where
                 }
             }
         } else {
-            for i in 0_isize..(counter.len() as isize) {
-                while let Some(value) = counter[i as usize].pop_back() {
+            for i in (0_isize..(counter.len() as isize)).rev() {
+                while let Some(value) = counter[i as usize].pop_front() {
                     array[pos] = value;
                     pos += 1;
                 }
             }
-            for i in 0_isize..(neg_counter.len() as isize) {
-                while let Some(value) = neg_counter[i as usize].pop_front() {
+            for i in (0_isize..(neg_counter.len() as isize)).rev() {
+                while let Some(value) = neg_counter[i as usize].pop_back() {
                     array[pos] = value;
                     pos += 1;
                 }
