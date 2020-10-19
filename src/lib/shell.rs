@@ -5,7 +5,7 @@
 mod utils;
 
 /// Sort in ascending order using a shell sort algorithm.
-/// 
+///
 /// ```rust
 /// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
 /// shell::sort(&mut nums);
@@ -19,7 +19,7 @@ where
 }
 
 /// Sort in descending order using a shell sort algorithm.
-/// 
+///
 /// ```rust
 /// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
 /// shell::sort_reverse(&mut nums);
@@ -34,7 +34,7 @@ where
 
 /// It takes a comparator function to determine the order,
 /// and sorts it using a shell sort algorithm.
-/// 
+///
 /// ```rust
 /// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
 /// shell::sort_by(&mut nums, |l, r| l.cmp(r));
@@ -65,11 +65,4 @@ where
         _stooge_sort_impl(array, i + k, j, compare.clone()); // Sort the last 2/3 of the array
         _stooge_sort_impl(array, i, j - k, compare); // Sort the first 2/3 of the array again
     }
-}
-
-#[test]
-fn test() {
-    let mut v = vec![1, 3, 2, 5, 4];
-    sort(&mut v);
-    assert_eq!([1, 2, 3, 4, 5], v);
 }
