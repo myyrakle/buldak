@@ -96,14 +96,14 @@ where
 }
 
 /// Sort in ascending order using a counting sort algorithm.
-/// 
+///
 /// The parameter 'max' is the absolute maximum value of the received array.
 /// Any elements beyond this value will result in an error.
-/// 
+///
 /// The parameter 'signed' chooses whether to support negative numbers.
 /// When using only natural numbers, it is twice as efficient to set signed to false.
 /// If signed is set to false and the array contains negative elements, an error occurs.
-/// 
+///
 /// ```rust
 /// use buldak::counting;
 ///
@@ -122,15 +122,15 @@ where
     _counting_impl(array, max, true, signed)
 }
 
-/// Sort in descending order using a bubble counting algorithm.
-/// 
+/// Sort in descending order using a counting algorithm.
+///
 /// The parameter 'max' is the absolute maximum value of the received array.
 /// Any elements beyond this value will result in an error.
-/// 
+///
 /// The parameter 'signed' chooses whether to support negative numbers.
 /// When using only natural numbers, it is twice as efficient to set signed to false.
 /// If signed is set to false and the array contains negative elements, an error occurs.
-/// 
+///
 /// ```compile_fail
 /// use buldak::counting;
 ///
