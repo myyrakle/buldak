@@ -67,6 +67,9 @@ pub mod insertion;
 #[path = "lib/double_selection.rs"]
 pub mod double_selection;
 
+#[path = "lib/shell.rs"]
+pub mod shell;
+
 #[path = "lib/stooge.rs"]
 pub mod stooge;
 
