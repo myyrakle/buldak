@@ -1,4 +1,4 @@
-//! comb comb algorithm.
+//! comb sort algorithm.
 //!
 //! **O(N²)**
 
