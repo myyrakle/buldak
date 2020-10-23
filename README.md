@@ -4,5 +4,5 @@
 
 It is a library that provides various sorting functions.
 
-- [document](https://docs.rs/buldak)
-- [repository](https://github.com/myyrakle/buldak)
+-   [document](https://docs.rs/buldak)
+-   [repository](https://github.com/myyrakle/buldak)
