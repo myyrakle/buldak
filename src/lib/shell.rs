@@ -1,6 +1,6 @@
 //! shell sort algorithm.
 //!
-//! **O(N<sup>2.7095...</sup>)**
+//! **O(N²)**
 
 /// Sort in ascending order using a shell sort algorithm.
 ///
@@ -57,27 +57,46 @@ where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    let mut gap = array.len()/3 + 1;
+    let mut h = 1;
 
-    while gap > 0 {
-        for i in gap..array.len() {
-            let mut j = i - gap;
+    while h < array.len() {
+        h = h*3 + 1;
+    }
+    h /= 3;
 
+    while h > 0 {
+        for i in h..array.len(){
+            let mut k = (i - h) as isize;
             let key = array[i].clone();
-
-            while j>=0 && compare(&key, &array[j]) == std::cmp::Ordering::Less {
-                array[j+gap] = array[j].clone();
-
-                if j<gap {
-                    break;
-                }
-                j-=gap;
-            } 
-            array[j+gap] = key;
+            while k>=0 && compare(&key, &array[k as usize]) == std::cmp::Ordering::Less {
+                array[k as usize+h] = array[k as usize].clone();
+                k -= h as isize;
+            }
+            array[(k + h as isize)as usize] = key;
         }
 
-        gap = gap/3+1;
+        h/=3;
     }
+
+    // while gap > 0 {
+    //     for i in gap..array.len() {
+    //         let mut j = i - gap;
+
+    //         let key = array[i].clone();
+
+    //         while j>=0 && compare(&key, &array[j]) == std::cmp::Ordering::Less {
+    //             array[j+gap] = array[j].clone();
+
+    //             if j<gap {
+    //                 break;
+    //             }
+    //             j-=gap;
+    //         } 
+    //         array[j+gap] = key;
+    //     }
+
+    //     gap = gap/3+1;
+    // }
 
     // let mut gap = array.len()/3 + 1;
 
@@ -90,27 +109,27 @@ where
     // }
 }
 
-fn _shell_sort_insertion_impl<T, F>(array: &mut [T], first: usize, last: usize, gap: usize, compare: F)
-where
-    T: std::cmp::Ord + std::clone::Clone,
-    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
-{
-    let mut i = first+gap;
-    while i<=last {
-        let key = array[i].clone();
+// fn _shell_sort_insertion_impl<T, F>(array: &mut [T], first: usize, last: usize, gap: usize, compare: F)
+// where
+//     T: std::cmp::Ord + std::clone::Clone,
+//     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+// {
+//     let mut i = first+gap;
+//     while i<=last {
+//         let key = array[i].clone();
 
-        let mut j = i-gap;
-        while j>=first && compare(&array[j], &key) == std::cmp::Ordering::Greater {
-            array[j + gap] = array[j].clone();
+//         let mut j = i-gap;
+//         while j>=first && compare(&array[j], &key) == std::cmp::Ordering::Greater {
+//             array[j + gap] = array[j].clone();
 
-            if j >= gap {
-                j -= gap;
-            }
+//             if j >= gap {
+//                 j -= gap;
+//             }
             
-        }
+//         }
 
-        array[j+gap] = key.clone();
+//         array[j+gap] = key.clone();
 
-        i += gap;
-    } 
-}
+//         i += gap;
+//     } 
+// }
