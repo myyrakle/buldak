@@ -57,25 +57,25 @@ where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    let mut h = 1;
+    let mut gap = 1;
 
-    while h < array.len() {
-        h = h*3 + 1;
+    while gap < array.len() {
+        gap = gap*3 + 1;
     }
-    h /= 3;
+    gap /= 3;
 
-    while h > 0 {
-        for i in h..array.len(){
-            let mut k = (i - h) as isize;
+    while gap > 0 {
+        for i in gap..array.len(){
+            let mut k = (i - gap) as isize;
             let key = array[i].clone();
             while k>=0 && compare(&key, &array[k as usize]) == std::cmp::Ordering::Less {
-                array[k as usize+h] = array[k as usize].clone();
-                k -= h as isize;
+                array[k as usize+gap] = array[k as usize].clone();
+                k -= gap as isize;
             }
-            array[(k + h as isize)as usize] = key;
+            array[(k + gap as isize)as usize] = key;
         }
 
-        h/=3;
+        gap/=3;
     }
 
     // while gap > 0 {
