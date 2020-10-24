@@ -9,10 +9,6 @@ use std::convert::{TryFrom, TryInto};
 /// The parameter 'radix' is ​​the base on which to sort.
 /// If you want decimal based sorting, you can pass 10.
 ///
-/// The parameter 'digits_max' is the maximum number of digits in the array.
-/// For example, if the maximum number in the array does not exceed 9999, you can pass 4.
-/// Any value beyond this number will cause an error.
-///
 /// ```rust
 /// use buldak::radix;
 ///
@@ -32,10 +28,6 @@ where
 ///
 /// The parameter 'radix' is ​​the base on which to sort.
 /// If you want decimal based sorting, you can pass 10.
-///
-/// The parameter 'digits_max' is the maximum number of digits in the array.
-/// For example, if the maximum number in the array does not exceed 9999, you can pass 4.
-/// Any value beyond this number will cause an error.
 ///
 /// ```rust
 /// use buldak::radix;
@@ -135,7 +127,7 @@ where
     let abs_max = abs_max as f64;
 
     let digits_max = abs_max.log(radix as f64) as usize + 1;
-    
+
     return _radix_sort_impl(array, digits_max, radix, asc);
 }
 
