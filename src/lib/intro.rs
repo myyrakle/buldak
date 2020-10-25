@@ -80,8 +80,8 @@ where
     } else {
         let pivot = _quick_partition(array, begin, end, compare.clone());
         println!("{}", pivot);
-        _intro_sort_recursive(array, 0, pivot, max_depth-1, compare.clone());
-        _intro_sort_recursive(array, pivot+1, array.len()-1, max_depth-1, compare);
+        _intro_sort_recursive(array, 0, pivot-1, max_depth-1, compare.clone());
+        _intro_sort_recursive(array, pivot+1, n, max_depth-1, compare);
     }
 }
 
