@@ -2,8 +2,10 @@
 //!
 //! **O(Nlog₂N)**
 
+mod utils;
+
 /// Sort in ascending order using a heap sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::heap;
 ///
@@ -15,11 +17,11 @@ pub fn sort<T>(array: &mut [T])
 where
     T: std::cmp::Ord + std::clone::Clone,
 {
-    _heap_sort_impl(array, false)
+    sort_by(array, |l, r| l.cmp(r))
 }
 
 /// Sort in descending order using a heap sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::heap;
 ///
@@ -31,24 +33,45 @@ pub fn sort_reverse<T>(array: &mut [T])
 where
     T: std::cmp::Ord + std::clone::Clone,
 {
-    _heap_sort_impl(array, true)
+    sort_by(array, |l, r| l.cmp(r).reverse())
 }
 
-fn _heap_sort_impl<T>(array: &mut [T], reverse: bool)
+/// It takes a comparator function to determine the order,
+/// and sorts it using a heap sort algorithm.
+///
+/// ```rust
+/// use buldak::heap;
+///
+/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
+/// heap::sort_by(&mut nums, |l, r| l.cmp(r));
+/// assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
+/// ```
+pub fn sort_by<T, F>(array: &mut [T], compare: F)
 where
     T: std::cmp::Ord + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    use std::collections::BinaryHeap;
+    make_heap(array, array.len(), compare.clone());
+    for i in (0..array.len()).rev() {
+        utils::swap(array, 0, i);
+        make_heap(array, i, compare.clone());
+    }
+}
 
-    let heap: BinaryHeap<T> = array.iter().map(|e| e.clone()).collect();
+fn make_heap<T, F>(array: &mut [T], len: usize, compare: F)
+where
+    T: std::cmp::Ord + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+{
+    for i in 1..len {
+        let mut child = i;
 
-    let sorted = heap.into_sorted_vec();
-
-    let mut i = 0;
-    let len = array.len();
-    while i < array.len() {
-        let index = if reverse { len - 1 - i } else { i };
-        array[i] = sorted[index].clone();
-        i += 1;
+        while child > 0 {
+            let root = (child - 1) / 2;
+            if compare(&array[root], &array[child]) == std::cmp::Ordering::Less {
+                utils::swap(array, root, child);
+            }
+            child = root;
+        }
     }
 }
