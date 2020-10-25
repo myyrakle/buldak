@@ -53,22 +53,84 @@ where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    make_heap(array, array.len(), compare.clone());
-    for i in (0..array.len()).rev() {
-        utils::swap(array, 0, i);
-        make_heap(array, i, compare.clone());
-    }
+    _intro_sort_impl(array, compare)
 }
 
-fn make_heap<T, F>(array: &mut [T], len: usize, compare: F)
+fn _intro_sort_impl<T, F>(array: &mut [T], compare: F)
 where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    for i in 1..len {
+    let max_depth = (array.len() as f64).log2().floor() as isize * 2;
+    _intro_sort_recursive(array, 0, array.len()-1, max_depth, compare)
+}
+
+fn _intro_sort_recursive<T, F>(array: &mut [T], begin:usize, end:usize, max_depth: isize, compare: F)
+where
+    T: std::cmp::Ord + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+{
+    let n = end-begin;
+
+    if n <= 1 {
+        return ();
+    } else if max_depth == 0 {
+        _heap_sort(array, begin, end, compare)
+    } else {
+        let pivot = _quick_partition(array, begin, end, compare.clone());
+        _intro_sort_recursive(array, 0, pivot-1, max_depth-1, compare.clone());
+        _intro_sort_recursive(array, pivot+1, n, max_depth-1, compare);
+    }
+}
+
+fn _quick_partition<T, F>(array: &mut [T], left: usize, right: usize, compare: F) -> usize
+where
+    T: std::cmp::Ord + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering,
+{
+    let pivot = array[left].clone();
+    let mut l = left;
+    let mut r = right;
+
+    while l < r {
+        while compare(&pivot, &array[r]) == std::cmp::Ordering::Less {
+            r -= 1;
+        }
+
+        while l < r && compare(&pivot, &array[l]) != std::cmp::Ordering::Less {
+            l += 1;
+        }
+
+        utils::swap(array, l, r);
+    }
+
+    array[left] = array[l].clone();
+    array[l] = pivot;
+
+    return l;
+}
+
+fn _heap_sort<T, F>(array: &mut [T], begin:usize, end:usize, compare: F)
+where
+    T: std::cmp::Ord + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+{
+    _make_heap(array, begin, end, compare.clone());
+    for i in (begin..end).rev() {
+        utils::swap(array, begin, i);
+        _make_heap(array, begin, i, compare.clone());
+    }
+}
+
+fn _make_heap<T, F>(array: &mut [T], begin:usize, end:usize, compare: F)
+where
+    T: std::cmp::Ord + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+{
+    for i in (begin+1)..(end) {
         let mut child = i;
 
-        while child > 0 {
+        while child > begin {
             let root = (child - 1) / 2;
             if compare(&array[root], &array[child]) == std::cmp::Ordering::Less {
                 utils::swap(array, root, child);

@@ -89,6 +89,9 @@ pub mod merge;
 #[path = "lib/heap.rs"]
 pub mod heap;
 
+#[path = "lib/intro.rs"]
+pub mod intro;
+
 #[path = "lib/counting.rs"]
 pub mod counting;
 
