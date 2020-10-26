@@ -71,6 +71,10 @@ where
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
     println!("{}, {}", begin, end);
+
+    if begin>=end {
+        return ();
+    }
     let n = end-begin;
 
     if n <= 1 {
@@ -80,7 +84,7 @@ where
     } else {
         let pivot = _quick_partition(array, begin, end, compare.clone());
         println!("{}", pivot);
-        _intro_sort_recursive(array, 0, pivot-1, max_depth-1, compare.clone());
+        _intro_sort_recursive(array, 0, pivot, max_depth-1, compare.clone());
         _intro_sort_recursive(array, pivot+1, n, max_depth-1, compare);
     }
 }
