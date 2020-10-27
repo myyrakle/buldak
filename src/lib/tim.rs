@@ -53,27 +53,52 @@ where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    make_heap(array, array.len(), compare.clone());
-    for i in (0..array.len()).rev() {
-        utils::swap(array, 0, i);
-        make_heap(array, i, compare.clone());
-    }
+    
 }
 
-fn make_heap<T, F>(array: &mut [T], len: usize, compare: F)
-where
+fn _merge<T, F>(
+    array: &mut [T],
+    sorted: &mut [T],
+    left: usize,
+    middle: usize,
+    right: usize,
+    compare: F,
+) where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    for i in 1..len {
-        let mut child = i;
+    let mut l = left;
+    let mut r = middle + 1;
+    let mut sorted_index = left;
 
-        while child > 0 {
-            let root = (child - 1) / 2;
-            if compare(&array[root], &array[child]) == std::cmp::Ordering::Less {
-                utils::swap(array, root, child);
+    while l <= middle && r <= right {
+        match compare(&array[l], &array[r]) {
+            std::cmp::Ordering::Greater => {
+                sorted[sorted_index] = array[r].clone();
+                sorted_index += 1;
+                r += 1;
             }
-            child = root;
+            _ => {
+                sorted[sorted_index] = array[l].clone();
+                sorted_index += 1;
+                l += 1;
+            }
         }
+    }
+
+    if l > middle {
+        for e in r..=right {
+            sorted[sorted_index] = array[e].clone();
+            sorted_index += 1;
+        }
+    } else {
+        for e in l..=middle {
+            sorted[sorted_index] = array[e].clone();
+            sorted_index += 1;
+        }
+    }
+
+    for e in left..=right {
+        array[e] = sorted[e].clone();
     }
 }

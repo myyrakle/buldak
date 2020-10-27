@@ -51,6 +51,14 @@ where
     T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering,
 {
+    _cocktail_shaker_sort_impl(array, compare)
+}
+
+fn _cocktail_shaker_sort_impl<T, F>(array: &mut [T], compare: F)
+where
+    T: std::cmp::Ord,
+    F: Fn(&T, &T) -> std::cmp::Ordering,
+{
     let mut first = 0;
     let mut last = array.len();
 

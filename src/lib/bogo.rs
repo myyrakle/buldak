@@ -49,12 +49,20 @@ where
     T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering,
 {
-    while sorted(array, &compare) == false {
-        shuffle(array);
+    _bogo_sort_impl(array, compare)
+}
+
+fn _bogo_sort_impl<T, F>(array: &mut [T], compare: F)
+where
+    T: std::cmp::Ord,
+    F: Fn(&T, &T) -> std::cmp::Ordering,
+{
+    while _sorted(array, &compare) == false {
+        _shuffle(array);
     }
 }
 
-fn sorted<T, F>(array: &[T], compare: &F) -> bool
+fn _sorted<T, F>(array: &[T], compare: &F) -> bool
 where
     F: Fn(&T, &T) -> std::cmp::Ordering,
 {
@@ -74,7 +82,7 @@ where
 
 use rand::seq::SliceRandom;
 
-fn shuffle<T>(array: &mut [T]) {
+fn _shuffle<T>(array: &mut [T]) {
     let mut rng = rand::thread_rng();
     array.shuffle(&mut rng);
 }

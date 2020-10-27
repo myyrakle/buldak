@@ -49,24 +49,32 @@ where
     T: std::cmp::Ord + std::clone::Clone + std::fmt::Debug,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
+    _merge_sort_impl(array, compare)
+}
+
+// implementation
+fn _merge_sort_impl<T, F>(array: &mut [T], compare: F)
+where
+    T: std::cmp::Ord + std::clone::Clone + std::fmt::Debug,
+    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+{
     if array.len() == 0 {
         return;
     }
 
     let mut sorted: std::vec::Vec<T> = array.iter().map(|e| e.clone()).collect();
-    _merge_sort_impl(array, &mut sorted, 0, array.len() - 1, compare)
+    _merge_sort_recursive(array, &mut sorted, 0, array.len() - 1, compare)
 }
 
-// implementation
-fn _merge_sort_impl<T, F>(array: &mut [T], sorted: &mut [T], left: usize, right: usize, compare: F)
+fn _merge_sort_recursive<T, F>(array: &mut [T], sorted: &mut [T], left: usize, right: usize, compare: F)
 where
     T: std::cmp::Ord + std::clone::Clone + std::fmt::Debug,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
     if left < right {
         let middle = (left + right) / 2;
-        _merge_sort_impl(array, sorted, left, middle, compare.clone());
-        _merge_sort_impl(array, sorted, middle + 1, right, compare.clone());
+        _merge_sort_recursive(array, sorted, left, middle, compare.clone());
+        _merge_sort_recursive(array, sorted, middle + 1, right, compare.clone());
         _merge(array, sorted, left, middle, right, compare);
         println!("{:?}", sorted);
     }

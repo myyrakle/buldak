@@ -51,16 +51,24 @@ where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
+    _quick_sort_impl(array, compare)
+}
+
+fn _quick_sort_impl<T, F>(array: &mut [T], compare: F)
+where
+    T: std::cmp::Ord + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+{
     if array.len() == 0 {
         return;
     }
-    _quick_impl(array, 0, array.len() - 1, compare)
+    _quick_sort_recursive(array, 0, array.len() - 1, compare)
 }
 
 // implementation
 
 // recurive
-fn _quick_impl<T, F>(array: &mut [T], left: usize, right: usize, compare: F)
+fn _quick_sort_recursive<T, F>(array: &mut [T], left: usize, right: usize, compare: F)
 where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
@@ -71,8 +79,8 @@ where
 
     let pivot = _quick_partition(array, left, right, compare.clone());
 
-    _quick_impl(array, left, pivot, compare.clone());
-    _quick_impl(array, pivot + 1, right, compare);
+    _quick_sort_recursive(array, left, pivot, compare.clone());
+    _quick_sort_recursive(array, pivot + 1, right, compare);
 }
 
 fn _quick_partition<T, F>(array: &mut [T], left: usize, right: usize, compare: F) -> usize

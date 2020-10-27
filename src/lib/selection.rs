@@ -51,6 +51,14 @@ where
     T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering,
 {
+    _selection_sort_impl(array, compare)
+}
+
+fn _selection_sort_impl<T, F>(array: &mut [T], compare: F)
+where
+    T: std::cmp::Ord,
+    F: Fn(&T, &T) -> std::cmp::Ordering,
+{
     let mut last = array.len() - 1;
 
     while 0 != last {

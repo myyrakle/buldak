@@ -49,6 +49,14 @@ where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering,
 {
+    _insertion_sort_impl(array, compare)
+}
+
+fn _insertion_sort_impl <T, F>(array: &mut [T], compare: F)
+where
+    T: std::cmp::Ord + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering,
+{
     let mut start = 1;
     let end = array.len();
 

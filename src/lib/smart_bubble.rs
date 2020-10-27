@@ -53,6 +53,14 @@ where
     T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering,
 {
+    _smart_bubble_sort_impl(array, compare)
+}
+
+fn _smart_bubble_sort_impl<T, F>(array: &mut [T], compare: F)
+where
+    T: std::cmp::Ord,
+    F: Fn(&T, &T) -> std::cmp::Ordering,
+{
     let mut last = array.len();
 
     while 0 != last {

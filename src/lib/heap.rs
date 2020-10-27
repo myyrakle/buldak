@@ -51,14 +51,22 @@ where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    make_heap(array, array.len(), compare.clone());
+    _heap_sort_impl(array, compare)
+}
+
+fn _heap_sort_impl<T, F>(array: &mut [T], compare: F)
+where
+    T: std::cmp::Ord + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+{
+    _make_heap(array, array.len(), compare.clone());
     for i in (0..array.len()).rev() {
         utils::swap(array, 0, i);
-        make_heap(array, i, compare.clone());
+        _make_heap(array, i, compare.clone());
     }
 }
 
-fn make_heap<T, F>(array: &mut [T], len: usize, compare: F)
+fn _make_heap<T, F>(array: &mut [T], len: usize, compare: F)
 where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,

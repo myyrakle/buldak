@@ -17,7 +17,7 @@ where
     <T as std::convert::TryInto<isize>>::Error: std::fmt::Debug,
     <T as std::convert::TryFrom<isize>>::Error: std::fmt::Debug,
 {
-    _counting_scan_impl(array, true, true)
+    _counting_sort_max_scan(array, true, true)
 }
 
 // pub fn sort<T, Max>(array: &mut [T], max: Max, signed: bool) -> Result<(), String>
@@ -46,7 +46,7 @@ where
     <T as std::convert::TryInto<isize>>::Error: std::fmt::Debug,
     <T as std::convert::TryFrom<isize>>::Error: std::fmt::Debug,
 {
-    _counting_scan_impl(array, false, true)
+    _counting_sort_max_scan(array, false, true)
 }
 
 // pub fn sort_reverse<T, Max>(array: &mut [T], max: Max, signed: bool) -> Result<(), String>
@@ -60,7 +60,7 @@ where
 //     _counting_impl(array, max, false, signed)
 // }
 
-fn _counting_impl<T, Max>(array: &mut [T], max: Max, asc: bool, signed: bool) -> Result<(), String>
+fn _counting_sort_impl<T, Max>(array: &mut [T], max: Max, asc: bool, signed: bool) -> Result<(), String>
 where
     T: std::convert::TryInto<isize> + std::convert::TryFrom<isize> + std::clone::Clone,
     <T as std::convert::TryInto<isize>>::Error: std::fmt::Debug,
@@ -153,7 +153,7 @@ where
     return Ok(());
 }
 
-fn _counting_scan_impl<T>(array: &mut [T], asc: bool, signed: bool) -> Result<(), String>
+fn _counting_sort_max_scan<T>(array: &mut [T], asc: bool, signed: bool) -> Result<(), String>
 where
     T: std::convert::TryInto<isize> + std::convert::TryFrom<isize> + std::clone::Clone,
     <T as std::convert::TryInto<isize>>::Error: std::fmt::Debug,
@@ -171,5 +171,5 @@ where
         }
     }
 
-    return _counting_impl(array, abs_max, asc, signed);
+    return _counting_sort_impl(array, abs_max, asc, signed);
 }
