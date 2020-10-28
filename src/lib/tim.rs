@@ -65,20 +65,39 @@ where
     T: std::cmp::Ord + std::clone::Clone + std::default::Default,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
+    // Sort individual subarrays of size RUN 
     let mut i = 0;
     while i<array.len() {
         _insertion_sort(array, i, std::cmp::min(i+31, array.len()-1), compare.clone());
         i+=RUN;
     }
 
+    // Start merging from size RUN (or 32).  
+    // It will merge 
+    // to form size 64, then 128, 256  
+    // and so on .... 
     let mut size = RUN;
     while size<array.len() {
         let mut left = 0;
 
+        // pick starting point of  
+        // left sub array. We 
+        // are going to merge  
+        // array[left..left+size-1] 
+        // and array[left+size, left+2*size-1] 
+        // After every merge, we  
+        // increase left by 2*size 
         while left < array.len() {
+
+            // find ending point of  
+            // left sub array 
+            // mid+1 is starting point  
+            // of right sub array 
             let middle = left + size -1 ;
             let right = std::cmp::min(left + 2*size -1, array.len()-1);
 
+            // merge sub array arr[left.....mid] & 
+            // arr[mid+1....right] 
             _merge(array, left, middle, right, compare.clone());
 
             left += size*2;
@@ -99,6 +118,8 @@ fn _merge<T, F>(
     T: std::cmp::Ord + std::clone::Clone + std::default::Default,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
+    // Original array is broken in two parts 
+    // left and right array 
     let left_len = middle - left + 1;
     let right_len = right - middle;
 
@@ -117,6 +138,9 @@ fn _merge<T, F>(
     let mut j = 0; //right array index
     let mut k = 1; //full array index
 
+    // After comparing, we  
+    // merge those two array 
+    // in larger sub array 
     while i<left_len && j<right_len {
         if compare(&array_left[i], &array_right[j]) == std::cmp::Ordering::Greater {
             array[k] = array_right[j].clone();
@@ -128,12 +152,14 @@ fn _merge<T, F>(
         k+=1;
     }
 
+    // Copy remaining elements of left, if any 
     while i < left_len {
         array[k] = array_left[i].clone();
         k+=1;
         i+=1;
     }
 
+    // Copy remaining element of right, if any 
     while j < right_len {
         array[k] = array_right[j].clone();
         k+=1;
