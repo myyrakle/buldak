@@ -65,55 +65,91 @@ where
     _intro_sort_recursive(array, 0, array.len()-1, max_depth, compare)
 }
 
-fn _intro_sort_recursive<T, F>(array: &mut [T], begin:usize, end:usize, max_depth: isize, compare: F)
+fn _intro_sort_recursive<T, F>(array: &mut [T], begin:usize, end:usize, mut max_depth: isize, compare: F)
 where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    println!("{}, {}", begin, end);
+    if end-begin > 16 {
+        if max_depth == 0 {
+            _heap_sort(array, begin, end, compare);
+            return ();
+        }
 
-    if begin>=end {
-        return ();
-    }
-    let n = end-begin;
+        max_depth-=1;
+        let pivot = _find_pivot(array, begin, begin+((end-begin)/2) + 1, end, compare.clone());
+        utils::swap(array, pivot, end);
 
-    if n <= 1 {
-        return ();
-    } else if max_depth == 0 {
-        _heap_sort(array, begin, end, compare)
-    } else {
-        let pivot = _quick_partition(array, begin, end, compare.clone());
-        println!("{}", pivot);
-        _intro_sort_recursive(array, 0, pivot, max_depth-1, compare.clone());
-        _intro_sort_recursive(array, pivot+1, n, max_depth-1, compare);
+        let pivot = _intro_partition(array, begin, end, compare.clone());
+        _intro_sort_recursive(array, begin, pivot-1, max_depth, compare.clone());
+        _intro_sort_recursive(array, pivot+1, end, max_depth, compare);
+    } 
+    else {
+        _insertion_sort(array, begin, end, compare);
     }
 }
 
-fn _quick_partition<T, F>(array: &mut [T], left: usize, right: usize, compare: F) -> usize
+fn _max_index<T, F>(array: &[T], left:usize, right:usize, compare: F) -> usize 
+where 
+    T: std::cmp::Ord + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+{
+    if compare(&array[left], &array[right]) == std::cmp::Ordering::Less {
+        left
+    } else {
+        right
+    }
+}
+
+fn _min_index<T, F>(array: &[T], left:usize, right:usize, compare: F) -> usize 
+where 
+    T: std::cmp::Ord + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+{
+    if compare(&array[left], &array[right]) != std::cmp::Ordering::Less {
+        left
+    } else {
+        right
+    }
+}
+
+fn _find_pivot<T, F>(array: &[T], left:usize, middle:usize, right:usize, compare: F) -> usize 
+where 
+    T: std::cmp::Ord + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+{
+    let max = _max_index(array, _max_index(array, left, right, compare.clone()), middle, compare.clone());
+    let min = _min_index(array, _min_index(array, left, right, compare.clone()), middle, compare.clone());
+
+    if left!=max && left!=min {
+        return left;
+    }
+    
+    if right!=max && right!=min {
+        return right;
+    }
+    
+    return middle;
+}
+
+fn _intro_partition<T, F>(array: &mut [T], left: usize, right: usize, compare: F) -> usize
 where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering,
 {
-    let pivot = array[left].clone();
-    let mut l = left;
-    let mut r = right;
+    let pivot = array[right].clone();
 
-    while l < r {
-        while compare(&pivot, &array[r]) == std::cmp::Ordering::Less {
-            r -= 1;
+    let mut i = left-1;
+
+    for j in left..=(right-1){
+        if compare(&array[j], &pivot) != std::cmp::Ordering::Greater {
+            i+=1;
+            utils::swap(array, i, j);
         }
-
-        while l < r && compare(&pivot, &array[l]) != std::cmp::Ordering::Less {
-            l += 1;
-        }
-
-        utils::swap(array, l, r);
+        
     }
-
-    array[left] = array[l].clone();
-    array[l] = pivot;
-
-    return l;
+    utils::swap(array, i+1, right);
+    return i+1;
 }
 
 fn _heap_sort<T, F>(array: &mut [T], begin:usize, end:usize, compare: F)
@@ -143,5 +179,22 @@ where
             }
             child = root;
         }
+    }
+}
+
+fn _insertion_sort<T, F>(array: &mut [T], left: usize, right: usize, compare: F)
+where
+    T: std::cmp::Ord + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+{
+    for i in (left+1)..=right {
+        let temp = array[i].clone();
+        let mut j = (i - 1) as isize;
+
+        while j>=left as isize && compare(&array[j as usize], &temp) == std::cmp::Ordering::Greater {
+            array[(j+1) as usize] = array[j as usize].clone();
+            j-=1;
+        }
+        array[(j+1) as usize] = temp;
     }
 }
