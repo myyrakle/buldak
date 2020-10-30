@@ -1,5 +1,6 @@
 //! heap sort algorithm.
 //!
+//! unstable sort
 //! **O(Nlog₂N)**
 
 mod utils;

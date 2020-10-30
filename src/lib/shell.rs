@@ -1,12 +1,13 @@
 //! shell sort algorithm.
 //!
+//! unstable sort
 //! **O(N²)**
 
 /// Sort in ascending order using a shell sort algorithm.
 ///
 /// ```rust
 /// use buldak::shell;
-/// 
+///
 /// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
 /// shell::sort(&mut nums);
 /// assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
@@ -22,7 +23,7 @@ where
 ///
 /// ```rust
 /// use buldak::shell;
-/// 
+///
 /// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
 /// shell::sort_reverse(&mut nums);
 /// assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1]);
@@ -39,7 +40,7 @@ where
 ///
 /// ```rust
 /// use buldak::shell;
-/// 
+///
 /// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
 /// shell::sort_by(&mut nums, |l, r| l.cmp(r));
 /// assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
@@ -60,22 +61,22 @@ where
     let mut gap = 1;
 
     while gap < array.len() {
-        gap = gap*3 + 1;
+        gap = gap * 3 + 1;
     }
     gap /= 3;
 
     while gap > 0 {
-        for i in gap..array.len(){
+        for i in gap..array.len() {
             let mut k = (i - gap) as isize;
             let key = array[i].clone();
-            while k>=0 && compare(&key, &array[k as usize]) == std::cmp::Ordering::Less {
-                array[k as usize+gap] = array[k as usize].clone();
+            while k >= 0 && compare(&key, &array[k as usize]) == std::cmp::Ordering::Less {
+                array[k as usize + gap] = array[k as usize].clone();
                 k -= gap as isize;
             }
-            array[(k + gap as isize)as usize] = key;
+            array[(k + gap as isize) as usize] = key;
         }
 
-        gap/=3;
+        gap /= 3;
     }
 
     // while gap > 0 {
@@ -91,7 +92,7 @@ where
     //                 break;
     //             }
     //             j-=gap;
-    //         } 
+    //         }
     //         array[j+gap] = key;
     //     }
 
@@ -125,11 +126,10 @@ where
 //             if j >= gap {
 //                 j -= gap;
 //             }
-            
 //         }
 
 //         array[j+gap] = key.clone();
 
 //         i += gap;
-//     } 
+//     }
 // }

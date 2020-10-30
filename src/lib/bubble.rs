@@ -1,11 +1,12 @@
 //! bubble sort algorithm.
 //!
+//! stable sort
 //! **O(N²)**
 
 mod utils;
 
 /// Sort in ascending order using a bubble sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::bubble;
 ///
@@ -16,13 +17,13 @@ mod utils;
 
 pub fn sort<T>(array: &mut [T])
 where
-   T: std::cmp::Ord,
+    T: std::cmp::Ord,
 {
     sort_by(array, |l, r| l.cmp(r))
 }
 
 /// Sort in descending order using a bubble sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::bubble;
 ///
@@ -30,7 +31,7 @@ where
 /// bubble::sort_reverse(&mut nums);
 /// assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1]);
 /// ```
-/// 
+///
 pub fn sort_reverse<T>(array: &mut [T])
 where
     T: std::cmp::Ord,
@@ -40,7 +41,7 @@ where
 
 /// It takes a comparator function to determine the order,
 /// and sorts it using a bubble sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::bubble;
 ///

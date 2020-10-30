@@ -1,11 +1,12 @@
 //! quick sort algorithm.
 //!
+//! unstable sort
 //! **average:O(Nlog₂N), worst:O(N²)**
 
 mod utils;
 
 /// Sort in ascending order using a quick sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::quick;
 ///
@@ -21,7 +22,7 @@ where
 }
 
 /// Sort in descending order using a quick sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::quick;
 ///
@@ -38,7 +39,7 @@ where
 
 /// It takes a comparator function to determine the order,
 /// and sorts it using a quick sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::quick;
 ///

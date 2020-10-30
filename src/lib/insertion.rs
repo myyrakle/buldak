@@ -1,9 +1,10 @@
 //! insertion sort algorithm.
 //!
+//! stable sort
 //! **O(N²)**
 
 /// Sort in ascending order using a insertion sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::insertion;
 ///
@@ -19,7 +20,7 @@ where
 }
 
 /// Sort in descending order using a insertion sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::insertion;
 ///
@@ -36,7 +37,7 @@ where
 
 /// It takes a comparator function to determine the order,
 /// and sorts it using a insertion sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::insertion;
 ///
@@ -52,7 +53,7 @@ where
     _insertion_sort_impl(array, compare)
 }
 
-fn _insertion_sort_impl <T, F>(array: &mut [T], compare: F)
+fn _insertion_sort_impl<T, F>(array: &mut [T], compare: F)
 where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering,

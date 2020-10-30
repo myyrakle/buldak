@@ -1,9 +1,10 @@
 //! bogo sort algorithm.
 //!
+//! unstable sort
 //! **best:O(1), worst:O(∞)**
 
 /// Sort in ascending order using a bogo sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::bogo;
 ///
@@ -19,7 +20,7 @@ where
 }
 
 /// Sort in descending order using a bogo sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::bogo;
 ///
@@ -36,7 +37,7 @@ where
 
 /// It takes a comparator function to determine the order,
 /// and sorts it using a bogo sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::bogo;
 ///
@@ -86,4 +87,3 @@ fn _shuffle<T>(array: &mut [T]) {
     let mut rng = rand::thread_rng();
     array.shuffle(&mut rng);
 }
-

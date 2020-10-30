@@ -1,11 +1,12 @@
 //! double selection sort algorithm.
 //!
+//! unstable sort
 //! **O(N²)**
 
 mod utils;
 
 /// Sort in ascending order using a double selection sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::double_selection;
 ///
@@ -21,7 +22,7 @@ where
 }
 
 /// Sort in descending order using a double selection sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::double_selection;
 ///
@@ -38,7 +39,7 @@ where
 
 /// It takes a comparator function to determine the order,
 /// and sorts it using a double selection sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::double_selection;
 ///

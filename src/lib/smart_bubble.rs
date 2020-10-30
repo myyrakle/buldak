@@ -1,5 +1,6 @@
 //! smart bubble sort algorithm.
 //!
+//! stable sort
 //! **O(N²)**
 //!
 //! This algorithm eliminates unnecessary repetitions in bubble sort.
@@ -7,7 +8,7 @@
 mod utils;
 
 /// Sort in ascending order using a smart bubble sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::smart_bubble;
 ///
@@ -23,7 +24,7 @@ where
 }
 
 /// Sort in descending order using a smart bubble sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::smart_bubble;
 ///
@@ -40,7 +41,7 @@ where
 
 /// It takes a comparator function to determine the order,
 /// and sorts it using a smart bubble sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::smart_bubble;
 ///

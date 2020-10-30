@@ -1,9 +1,10 @@
 //! merge sort algorithm.
 //!
+//! stable sort
 //! **O(Nlog₂N)**
 
 /// Sort in ascending order using a merge sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::merge;
 ///
@@ -19,7 +20,7 @@ where
 }
 
 /// Sort in descending order using a merge sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::merge;
 ///
@@ -36,7 +37,7 @@ where
 
 /// It takes a comparator function to determine the order,
 /// and sorts it using a merge sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::merge;
 ///
@@ -66,8 +67,13 @@ where
     _merge_sort_recursive(array, &mut sorted, 0, array.len() - 1, compare)
 }
 
-fn _merge_sort_recursive<T, F>(array: &mut [T], sorted: &mut [T], left: usize, right: usize, compare: F)
-where
+fn _merge_sort_recursive<T, F>(
+    array: &mut [T],
+    sorted: &mut [T],
+    left: usize,
+    right: usize,
+    compare: F,
+) where
     T: std::cmp::Ord + std::clone::Clone + std::fmt::Debug,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
