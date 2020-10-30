@@ -82,8 +82,8 @@ pub mod gnome;
 #[path = "lib/comb.rs"]
 pub mod comb;
 
-// #[path = "lib/cycle.rs"]
-// pub mod cycle;
+#[path = "lib/cycle.rs"]
+pub mod cycle;
 
 #[path = "lib/quick.rs"]
 pub mod quick;

@@ -65,7 +65,7 @@ where
 
     // traverse array elements and put it to on
     // the right place
-    for cycle_start in 0..=(array.len() - 1) {
+    for cycle_start in 0..(array.len() - 1) {
         // initialize item as starting point
         let item = array[cycle_start].clone();
 
@@ -88,11 +88,8 @@ where
             pos += 1;
         }
 
-        // put the item to it's right position
-        if pos != cycle_start {
-            utils::swap(array, cycle_start, pos);
-            writes += 1;
-        }
+        utils::swap(array, cycle_start, pos);
+        writes += 1;
 
         // Rotate rest of the cycle
         while pos != cycle_start {
@@ -110,11 +107,8 @@ where
                 pos += 1;
             }
 
-            // put the item to it's right position
-            if compare(&item, &array[pos]) != std::cmp::Ordering::Equal {
-                utils::swap(array, cycle_start, pos);
-                writes += 1;
-            }
+            utils::swap(array, cycle_start, pos);
+            writes += 1;
         }
     }
 }
