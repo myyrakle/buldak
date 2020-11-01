@@ -53,26 +53,23 @@ where
     _cycle_sort_impl(array, compare)
 }
 
-mod utils;
-
 fn _cycle_sort_impl<T, F>(array: &mut [T], compare: F)
 where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering,
 {
-    // count number of memory writes
-    let mut writes = 0;
+    let n = array.len();
 
     // traverse array elements and put it to on
     // the right place
-    for cycle_start in 0..(array.len() - 1) {
+    for cycle_start in 0..=(n - 2) {
         // initialize item as starting point
-        let item = array[cycle_start].clone();
+        let mut item = array[cycle_start].clone();
 
         // Find position where we put the item. We basically
         // count all smaller elements on right side of item.
         let mut pos = cycle_start;
-        for i in (cycle_start + 1)..array.len() {
+        for i in (cycle_start + 1)..n {
             if compare(&array[i], &item) == std::cmp::Ordering::Less {
                 pos += 1;
             }
@@ -88,15 +85,17 @@ where
             pos += 1;
         }
 
-        utils::swap(array, cycle_start, pos);
-        writes += 1;
+        // swap
+        let temp = item.clone();
+        item = array[pos].clone();
+        array[pos] = temp;
 
         // Rotate rest of the cycle
         while pos != cycle_start {
             pos = cycle_start;
 
             // Find position where we put the element
-            for i in (cycle_start + 1)..array.len() {
+            for i in (cycle_start + 1)..n {
                 if compare(&array[i], &item) == std::cmp::Ordering::Less {
                     pos += 1;
                 }
@@ -107,8 +106,10 @@ where
                 pos += 1;
             }
 
-            utils::swap(array, cycle_start, pos);
-            writes += 1;
+            // swap
+            let temp = item.clone();
+            item = array[pos].clone();
+            array[pos] = temp;
         }
     }
 }

@@ -9,7 +9,7 @@ cargo add buldak
 If not, you have to manually add the dependency to Cargo.toml.
 ```toml
 [dependencies]
-buldak = "0.20.0"
+buldak = "0.21.0"
 ```
 
 ## use
@@ -36,6 +36,7 @@ fn main()
 - stooge sort
 - gnome sort
 - comb sort
+- cycle sort
 - quick sort
 - merge sort
 - heap sort
