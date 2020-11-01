@@ -2,6 +2,7 @@
 //!
 //! Algorithm optimized for parallel processors.  
 //!  
+//! stable sort  
 //! **O(N²)**
 
 mod utils;
