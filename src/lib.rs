@@ -90,6 +90,9 @@ pub mod comb;
 #[path = "lib/cycle.rs"]
 pub mod cycle;
 
+//#[path = "lib/bitonic.rs"]
+//pub mod bitonic;
+
 #[path = "lib/quick.rs"]
 pub mod quick;
 
