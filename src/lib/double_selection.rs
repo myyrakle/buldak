@@ -1,6 +1,6 @@
 //! double selection sort algorithm.
 //!
-//! unstable sort
+//! unstable sort  
 //! **O(N²)**
 
 mod utils;

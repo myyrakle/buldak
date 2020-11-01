@@ -1,6 +1,6 @@
 //! insertion sort algorithm.
 //!
-//! stable sort
+//! stable sort  
 //! **O(N²)**
 
 /// Sort in ascending order using a insertion sort algorithm.

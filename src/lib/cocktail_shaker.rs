@@ -5,7 +5,7 @@
 mod utils;
 
 /// Sort in ascending order using a cocktail shaker sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::cocktail_shaker;
 ///
@@ -21,7 +21,7 @@ where
 }
 
 /// Sort in descending order using a cocktail shaker sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::cocktail_shaker;
 ///
@@ -38,7 +38,7 @@ where
 
 /// It takes a comparator function to determine the order,
 /// and sorts it using a cocktail shaker sort algorithm.
-/// 
+///
 /// ```rust
 /// use buldak::cocktail_shaker;
 ///

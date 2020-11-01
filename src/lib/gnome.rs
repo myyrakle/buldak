@@ -1,6 +1,6 @@
 //! gnome sort algorithm.
 //!
-//! stable sort
+//! stable sort  
 //! **O(N²)**
 
 mod utils;

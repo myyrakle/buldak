@@ -1,6 +1,6 @@
 //! bogo sort algorithm.
 //!
-//! unstable sort
+//! unstable sort  
 //! **best:O(1), worst:O(∞)**
 
 /// Sort in ascending order using a bogo sort algorithm.

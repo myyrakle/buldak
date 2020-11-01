@@ -9,7 +9,7 @@ cargo add buldak
 If not, you have to manually add the dependency to Cargo.toml.
 ```toml
 [dependencies]
-buldak = "0.21.0"
+buldak = "0.22.0"
 ```
 
 ## use
@@ -33,6 +33,7 @@ fn main()
 - selection sort
 - double selection sort
 - insertion sort
+- binary insertion sort
 - stooge sort
 - gnome sort
 - comb sort
@@ -67,6 +68,9 @@ pub mod selection;
 
 #[path = "lib/insertion.rs"]
 pub mod insertion;
+
+#[path = "lib/binary_insertion.rs"]
+pub mod binary_insertion;
 
 #[path = "lib/double_selection.rs"]
 pub mod double_selection;

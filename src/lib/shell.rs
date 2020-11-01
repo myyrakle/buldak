@@ -1,6 +1,6 @@
 //! shell sort algorithm.
 //!
-//! unstable sort
+//! unstable sort  
 //! **O(N²)**
 
 /// Sort in ascending order using a shell sort algorithm.

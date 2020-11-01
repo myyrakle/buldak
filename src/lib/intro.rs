@@ -1,6 +1,6 @@
 //! intro sort algorithm.
 //!
-//! unstable sort
+//! unstable sort  
 //! **O(Nlog₂N)**
 
 // not impl

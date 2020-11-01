@@ -1,6 +1,6 @@
 //! tim sort algorithm.
 //!
-//! stable sort
+//! stable sort  
 //! **O(Nlog₂N)**
 
 // not impl

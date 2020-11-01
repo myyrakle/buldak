@@ -1,5 +1,6 @@
 //! counting sort algorithm.
 //!
+//! unstable sort  
 //! **O(N)**
 
 /// Sort in ascending order using a counting sort algorithm.
@@ -60,7 +61,12 @@ where
 //     _counting_impl(array, max, false, signed)
 // }
 
-fn _counting_sort_impl<T, Max>(array: &mut [T], max: Max, asc: bool, signed: bool) -> Result<(), String>
+fn _counting_sort_impl<T, Max>(
+    array: &mut [T],
+    max: Max,
+    asc: bool,
+    signed: bool,
+) -> Result<(), String>
 where
     T: std::convert::TryInto<isize> + std::convert::TryFrom<isize> + std::clone::Clone,
     <T as std::convert::TryInto<isize>>::Error: std::fmt::Debug,
@@ -161,13 +167,13 @@ where
 {
     if array.len() == 0 {
         return Ok(());
-    } 
+    }
 
-    let mut abs_max:isize = array[0].to_owned().try_into().unwrap().abs();
+    let mut abs_max: isize = array[0].to_owned().try_into().unwrap().abs();
     for e in array.iter() {
-        let e:isize = e.to_owned().try_into().unwrap().abs();
+        let e: isize = e.to_owned().try_into().unwrap().abs();
         if e > abs_max {
-            abs_max=e;
+            abs_max = e;
         }
     }
 

@@ -1,6 +1,6 @@
 //! smart bubble sort algorithm.
 //!
-//! stable sort
+//! stable sort  
 //! **O(N²)**
 //!
 //! This algorithm eliminates unnecessary repetitions in bubble sort.
