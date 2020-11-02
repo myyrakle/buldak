@@ -120,3 +120,6 @@ pub mod radix;
 
 #[path = "lib/bogo.rs"]
 pub mod bogo;
+
+#[path = "lib/sleep.rs"]
+pub mod sleep;

@@ -1,80 +1,94 @@
 //! sleep sort algorithm.
 //!
-//! **best:O(1), worst:O(∞)**
+//! unstable sort  
+//! **O(N)**
 
-/// Sort in ascending order using a bogo sort algorithm.
+/// Sort in ascending order using a sleep sort algorithm.
 ///
 /// ```rust
-/// use buldak::bogo;
+/// use buldak::sleep;
 ///
-/// let mut nums = [5, 2, 3, 4, 1];
-/// bogo::sort(&mut nums);
-/// assert_eq!(nums, [1, 2, 3, 4, 5]);
+/// let mut nums = [1, 4, 2, 3, 5, -44, 111, 234, 21, 13];
+/// sleep::sort(&mut nums);
+/// assert_eq!(nums, [-44, 1, 2, 3, 4, 5, 13, 21, 111, 234]);
 /// ```
-pub fn sort<T>(array: &mut [T])
+pub fn sort<T>(array: & mut [T]) -> Result<(), String>
 where
-    T: std::cmp::Ord,
+    T: std::convert::TryInto<isize> + std::convert::TryFrom<isize> + std::clone::Clone + std::marker::Sync,
+    <T as std::convert::TryInto<isize>>::Error: std::fmt::Debug,
+    <T as std::convert::TryFrom<isize>>::Error: std::fmt::Debug,
 {
-    sort_by(array, |l, r| l.cmp(r))
+    _sleep_sort_impl(array, true)
 }
 
-/// Sort in descending order using a bogo sort algorithm.
+
+/// Sort in descending order using a sleep algorithm.
 ///
 /// ```rust
-/// use buldak::bogo;
+/// use buldak::sleep;
 ///
-/// let mut nums = [5, 2, 3, 4, 1];
-/// bogo::sort_reverse(&mut nums);
-/// assert_eq!(nums, [5, 4, 3, 2, 1]);
+/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13, -2];
+/// sleep::sort_reverse(&mut nums);
+/// assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1, -2]);
 /// ```
-pub fn sort_reverse<T>(array: &mut [T])
+pub fn sort_reverse<T>(array: & mut [T]) -> Result<(), String>
 where
-    T: std::cmp::Ord,
+    T: std::convert::TryInto<isize> + std::convert::TryFrom<isize> + std::clone::Clone + std::marker::Sync,
+    <T as std::convert::TryInto<isize>>::Error: std::fmt::Debug,
+    <T as std::convert::TryFrom<isize>>::Error: std::fmt::Debug,
 {
-    sort_by(array, |l, r| l.cmp(r).reverse())
+    _sleep_sort_impl(array, false)
 }
 
-/// It takes a comparator function to determine the order,
-/// and sorts it using a bogo sort algorithm.
-///
-/// ```rust
-/// use buldak::bogo;
-///
-/// let mut nums = [5, 2, 3, 4, 1];
-/// bogo::sort_by(&mut nums, |l, r| l.cmp(r));
-/// assert_eq!(nums, [1, 2, 3, 4, 5]);
-/// ```
-pub fn sort_by<T, F>(array: &mut [T], compare: F)
+
+
+fn _sleep_sort_impl<T>(
+    array: &mut [T],
+    asc: bool
+) -> Result<(), String>
 where
-    T: std::cmp::Ord,
-    F: Fn(&T, &T) -> std::cmp::Ordering,
+    T: std::convert::TryInto<isize> + std::convert::TryFrom<isize> + std::clone::Clone + std::marker::Sync,
+    <T as std::convert::TryInto<isize>>::Error: std::fmt::Debug,
+    <T as std::convert::TryFrom<isize>>::Error: std::fmt::Debug,
 {
-    while sorted(array, &compare) == false {
-        shuffle(array);
+    use std::{thread, time};
+    use std::sync::{Arc, Mutex};
+
+    let original = Arc::new(Mutex::new(array.to_owned()));
+
+    let mut shared = Arc::new(Mutex::new(vec![]));
+    let mut handlers = vec![];
+
+    for e in original.lock().unwrap().iter() {
+        let mut data = Arc::clone(&shared);
+
+        let n: isize = e.to_owned().try_into().unwrap();
+
+        handlers.push(thread::spawn(move ||{
+            thread::sleep(time::Duration::from_millis(n as u64));
+            data.lock().unwrap().push(e);
+        }));
     }
-}
 
-fn sorted<T, F>(array: &[T], compare: &F) -> bool
-where
-    F: Fn(&T, &T) -> std::cmp::Ordering,
-{
-    let mut current = &array[0];
+    for handler in handlers {
+        handler.join();
+    }
+/*
+    let result = shared.lock().unwrap();
 
-    for e in array {
-        match compare(current, e) {
-            std::cmp::Ordering::Greater => return false,
-            _ => (),
+    if asc {
+        for i in 0..array.len() {
+            array[i] = result[i].clone();
         }
-
-        current = e;
     }
+    else {
+        let len = array.len();
+        for i in 0..array.len() {
+            array[i] = result[len-i-1].clone();
+        }
+    }
+*/
 
-    return true;
+    return Ok(());
 }
 
-use rand::seq::SliceRandom;
-
-fn shuffle<T>(array: &mut [T]) {
-    let mut rng = rand::thread_rng();
-    array.shuffle(&mut rng);
-}
