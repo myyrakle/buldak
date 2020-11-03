@@ -24,7 +24,7 @@
     <list default="true" id="778c67e1-2f92-4e7a-9472-5d81b4df0a3d" name="Default Changelist" comment="backup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/bitonic.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/bitonic.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/stalin.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/stalin.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,6 +59,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
+    <property name="settings.editor.selected.configurable" value="language.rust.rustfmt" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -85,6 +86,7 @@
     </configuration>
   </component>
   <component name="RustProjectSettings">
+    <option name="runRustfmtOnSave" value="true" />
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
     <option name="version" value="2" />
   </component>
@@ -98,7 +100,7 @@
       <updated>1604273773843</updated>
       <workItem from="1604273776244" duration="1154000" />
       <workItem from="1604355005818" duration="5240000" />
-      <workItem from="1604441690462" duration="816000" />
+      <workItem from="1604441690462" duration="2507000" />
     </task>
     <task id="LOCAL-00001" summary="backup">
       <created>1604359434771</created>
@@ -130,22 +132,34 @@
     <option name="LAST_COMMIT_MESSAGE" value="backup" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="242" key="GridCell.Tab.0.bottom" timestamp="1604442122789">
+    <state x="552" y="161" key="#Plugins" timestamp="1604443246495">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="242" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604442122789" />
-    <state width="1877" height="242" key="GridCell.Tab.0.center" timestamp="1604442122789">
+    <state x="552" y="161" key="#Plugins/0.0.1920.1040@0.0.1920.1040" timestamp="1604443246495" />
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604443225769">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="242" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604442122789" />
-    <state width="1877" height="242" key="GridCell.Tab.0.left" timestamp="1604442122789">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604443225769" />
+    <state width="1877" height="242" key="GridCell.Tab.0.bottom" timestamp="1604444135199">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="242" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604442122789" />
-    <state width="1877" height="242" key="GridCell.Tab.0.right" timestamp="1604442122789">
+    <state width="1877" height="242" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604444135199" />
+    <state width="1877" height="242" key="GridCell.Tab.0.center" timestamp="1604444135199">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="242" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604442122789" />
+    <state width="1877" height="242" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604444135199" />
+    <state width="1877" height="242" key="GridCell.Tab.0.left" timestamp="1604444135199">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="242" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604444135199" />
+    <state width="1877" height="242" key="GridCell.Tab.0.right" timestamp="1604444135199">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="242" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604444135199" />
+    <state x="461" y="164" key="SettingsEditor" timestamp="1604443300358">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1604443300358" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1604359543668">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -154,5 +168,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="775" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604359497459" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604443269222">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604443269222" />
   </component>
 </project>
