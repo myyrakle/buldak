@@ -14,7 +14,7 @@ buldak = "0.24.0"
 
 ## use
 If you have performed the installation process well,
-you can sort by passing the values ​​in an array format as follows.
+you can sort by passing the values in an array format as follows.
 ```rust
 use buldak::*;
 
@@ -95,8 +95,8 @@ pub mod cycle;
 #[path = "lib/oddeven.rs"]
 pub mod oddeven;
 
-//#[path = "lib/bitonic.rs"]
-//pub mod bitonic;
+#[path = "lib/bitonic.rs"]
+pub mod bitonic;
 
 #[path = "lib/quick.rs"]
 pub mod quick;

@@ -60,38 +60,46 @@ where
     _bitonic_sort_recursive(array, 0, array.len(), true, compare)
 }
 
-fn _bitonic_sort_recursive<T, F>(array: &mut [T], left: usize, right: usize, asc: bool, compare: F)
+fn _bitonic_sort_recursive<T, F>(array: &mut [T], low: usize, count: usize, asc: bool, compare: F)
 where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    if right > 1 {
-        let middle = right / 2;
+    if count > 1 {
+        let middle = count / 2;
 
-        _bitonic_sort_recursive(array, left, middle, true, compare.clone());
-        _bitonic_sort_recursive(array, left + middle, middle, false, compare.clone());
+        _bitonic_sort_recursive(array, low, middle, true, compare.clone());
+        _bitonic_sort_recursive(array, low + middle, middle, false, compare.clone());
 
-        _bitonic_merge(array, left, right, asc, compare)
+        _bitonic_merge(array, low, count, asc, compare)
     }
 }
 
 mod utils;
 
-fn _bitonic_merge<T, F>(array: &mut [T], left: usize, right: usize, asc: bool, compare: F)
+fn _bitonic_merge<T, F>(array: &mut [T], low: usize, count: usize, asc: bool, compare: F)
 where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    if right > 1 {
-        let middle = right / 2;
+    if count > 1 {
+        let middle = count / 2;
 
-        for i in left..(left + middle) {
-            if (compare(&array[i], &array[i + middle]) == std::cmp::Ordering::Greater) == asc {
-                utils::swap(array, i, i + middle);
-            }
+        for i in low..(low + middle) {
+            _compare_swap(array, i, i+middle, asc, compare.clone());
         }
 
-        _bitonic_merge(array, left, middle, asc, compare.clone());
-        _bitonic_merge(array, left + middle, middle, asc, compare.clone());
+        _bitonic_merge(array, low, middle, asc, compare.clone());
+        _bitonic_merge(array, low + middle, middle, asc, compare.clone());
+    }
+}
+
+fn _compare_swap<T, F>(array: &mut [T], i: usize, j: usize, asc: bool, compare: F)
+    where
+        T: std::cmp::Ord + std::clone::Clone,
+        F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+{
+    if asc == (compare(&array[i], &array[j]) == std::cmp::Ordering::Greater)  {
+        utils::swap(array, i, j);
     }
 }
