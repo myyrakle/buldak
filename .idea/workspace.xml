@@ -22,10 +22,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="778c67e1-2f92-4e7a-9472-5d81b4df0a3d" name="Default Changelist" comment="backup">
+      <change afterPath="$PROJECT_DIR$/src/lib/library.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +98,7 @@
       <updated>1604273773843</updated>
       <workItem from="1604273776244" duration="1154000" />
       <workItem from="1604355005818" duration="5240000" />
-      <workItem from="1604441690462" duration="2599000" />
+      <workItem from="1604441690462" duration="3472000" />
     </task>
     <task id="LOCAL-00001" summary="backup">
       <created>1604359434771</created>
@@ -156,10 +154,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="242" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604444135199" />
-    <state x="461" y="164" key="SettingsEditor" timestamp="1604443300358">
+    <state x="461" y="164" key="SettingsEditor" timestamp="1604444527996">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1604443300358" />
+    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1604444527996" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1604359543668">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
