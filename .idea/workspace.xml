@@ -22,8 +22,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="778c67e1-2f92-4e7a-9472-5d81b4df0a3d" name="Default Changelist" comment="backup">
-      <change afterPath="$PROJECT_DIR$/src/lib/library.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/gravity.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +58,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
+    <property name="org.rust.disableDetachedFileInspectionC:/Users/sssan/Code/Rust/buldak/src/lib/gravity.rs" value="true" />
     <property name="settings.editor.selected.configurable" value="language.rust.rustfmt" />
   </component>
   <component name="RecentsManager">
@@ -65,11 +67,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Run" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="run --package buldak --bin buldak" />
@@ -98,7 +95,8 @@
       <updated>1604273773843</updated>
       <workItem from="1604273776244" duration="1154000" />
       <workItem from="1604355005818" duration="5240000" />
-      <workItem from="1604441690462" duration="3472000" />
+      <workItem from="1604441690462" duration="5376000" />
+      <workItem from="1604529278455" duration="283000" />
     </task>
     <task id="LOCAL-00001" summary="backup">
       <created>1604359434771</created>
@@ -138,22 +136,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604443225769" />
-    <state width="1877" height="242" key="GridCell.Tab.0.bottom" timestamp="1604444135199">
+    <state width="1877" height="242" key="GridCell.Tab.0.bottom" timestamp="1604479943939">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="242" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604444135199" />
-    <state width="1877" height="242" key="GridCell.Tab.0.center" timestamp="1604444135199">
+    <state width="1877" height="242" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604479943939" />
+    <state width="1877" height="242" key="GridCell.Tab.0.center" timestamp="1604479943939">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="242" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604444135199" />
-    <state width="1877" height="242" key="GridCell.Tab.0.left" timestamp="1604444135199">
+    <state width="1877" height="242" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604479943939" />
+    <state width="1877" height="242" key="GridCell.Tab.0.left" timestamp="1604479943939">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="242" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604444135199" />
-    <state width="1877" height="242" key="GridCell.Tab.0.right" timestamp="1604444135199">
+    <state width="1877" height="242" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604479943939" />
+    <state width="1877" height="242" key="GridCell.Tab.0.right" timestamp="1604479943939">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="242" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604444135199" />
+    <state width="1877" height="242" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604479943939" />
     <state x="461" y="164" key="SettingsEditor" timestamp="1604444527996">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

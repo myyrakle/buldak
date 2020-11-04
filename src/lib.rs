@@ -87,6 +87,9 @@ pub mod stooge;
 #[path = "lib/gnome.rs"]
 pub mod gnome;
 
+#[path = "lib/gravity.rs"]
+pub mod gravity;
+
 #[path = "lib/comb.rs"]
 pub mod comb;
 
