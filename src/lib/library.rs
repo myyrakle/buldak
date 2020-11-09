@@ -62,4 +62,15 @@ where
 {
 }
 
-// implementation
+fn _rebalance<T, F>(array: &mut [T], begin:usize, end:usize, compare: F)
+where
+    T: std::cmp::Ord + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+{
+    let r = end;
+    let w = end/2;
+
+    while r>=begin {
+        //array[w+]
+    }
+}

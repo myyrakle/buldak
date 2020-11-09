@@ -13,7 +13,7 @@
 /// ```
 pub fn sort<T>(array: &mut [T])
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
 {
     sort_by(array, |l, r| l.cmp(r))
 }
@@ -29,7 +29,7 @@ where
 /// ```
 pub fn sort_reverse<T>(array: &mut [T])
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
 {
     sort_by(array, |l, r| l.cmp(r).reverse())
 }
@@ -46,7 +46,7 @@ where
 /// ```
 pub fn sort_by<T, F>(array: &mut [T], compare: F)
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
     _bitonic_sort_impl(array, compare)
@@ -54,15 +54,15 @@ where
 
 fn _bitonic_sort_impl<T, F>(array: &mut [T], compare: F)
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    _bitonic_sort_recursive(array, 0, array.len(), true, compare)
+    _bitonic_sort_recursive(array, 0, array.len(), false, compare)
 }
 
 fn _bitonic_sort_recursive<T, F>(array: &mut [T], low: usize, count: usize, asc: bool, compare: F)
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
     if count > 1 {
@@ -71,7 +71,7 @@ where
         _bitonic_sort_recursive(array, low, middle, true, compare.clone());
         _bitonic_sort_recursive(array, low + middle, middle, false, compare.clone());
 
-        _bitonic_merge(array, low, count, asc, compare)
+        _bitonic_merge(array, low, count, asc, compare);
     }
 }
 
@@ -79,14 +79,14 @@ mod utils;
 
 fn _bitonic_merge<T, F>(array: &mut [T], low: usize, count: usize, asc: bool, compare: F)
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
     if count > 1 {
         let middle = count / 2;
 
         for i in low..(low + middle) {
-            _compare_swap(array, i, i+middle, asc, compare.clone());
+            _compare_swap(array, i, i + middle, asc, compare.clone());
         }
 
         _bitonic_merge(array, low, middle, asc, compare.clone());
@@ -95,11 +95,11 @@ where
 }
 
 fn _compare_swap<T, F>(array: &mut [T], i: usize, j: usize, asc: bool, compare: F)
-    where
-        T: std::cmp::Ord + std::clone::Clone,
-        F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+where
+    T: std::cmp::Ord,
+    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    if asc == (compare(&array[i], &array[j]) == std::cmp::Ordering::Greater)  {
+    if asc == (compare(&array[i], &array[j]) == std::cmp::Ordering::Greater) {
         utils::swap(array, i, j);
     }
 }

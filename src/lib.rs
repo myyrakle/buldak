@@ -100,8 +100,8 @@ pub mod cycle;
 #[path = "lib/oddeven.rs"]
 pub mod oddeven;
 
-/*#[path = "lib/bitonic.rs"]
-pub mod bitonic;*/
+#[path = "lib/bitonic.rs"]
+pub mod bitonic;
 
 #[path = "lib/quick.rs"]
 pub mod quick;

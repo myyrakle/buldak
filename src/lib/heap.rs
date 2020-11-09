@@ -16,7 +16,7 @@ mod utils;
 /// ```
 pub fn sort<T>(array: &mut [T])
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
 {
     sort_by(array, |l, r| l.cmp(r))
 }
@@ -32,7 +32,7 @@ where
 /// ```
 pub fn sort_reverse<T>(array: &mut [T])
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
 {
     sort_by(array, |l, r| l.cmp(r).reverse())
 }
@@ -49,7 +49,7 @@ where
 /// ```
 pub fn sort_by<T, F>(array: &mut [T], compare: F)
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
     _heap_sort_impl(array, compare)
@@ -57,7 +57,7 @@ where
 
 fn _heap_sort_impl<T, F>(array: &mut [T], compare: F)
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
     _make_heap(array, array.len(), compare.clone());
@@ -69,7 +69,7 @@ where
 
 fn _make_heap<T, F>(array: &mut [T], len: usize, compare: F)
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
     for i in 1..len {
