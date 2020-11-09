@@ -1,6 +1,8 @@
 //! bitonic sort algorithm.
 //!
-//! **O(N²)**
+//! This sort works only if the length of the array is 2^N.
+//!
+//! **O(Nlog₂N)**
 
 /// Sort in ascending order using a bitonic sort algorithm.
 ///
@@ -11,7 +13,7 @@
 /// bitonic::sort(&mut nums);
 /// assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
 /// ```
-pub fn sort<T>(array: &mut [T])
+pub fn sort<T>(array: &mut [T]) -> Result<(), String>
 where
     T: std::cmp::Ord,
 {
@@ -27,7 +29,7 @@ where
 /// bitonic::sort_reverse(&mut nums);
 /// assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1]);
 /// ```
-pub fn sort_reverse<T>(array: &mut [T])
+pub fn sort_reverse<T>(array: &mut [T]) -> Result<(), String>
 where
     T: std::cmp::Ord,
 {
@@ -44,7 +46,7 @@ where
 /// bitonic::sort_by(&mut nums, |l, r| l.cmp(r));
 /// assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
 /// ```
-pub fn sort_by<T, F>(array: &mut [T], compare: F)
+pub fn sort_by<T, F>(array: &mut [T], compare: F) -> Result<(), String>
 where
     T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
@@ -52,12 +54,19 @@ where
     _bitonic_sort_impl(array, compare)
 }
 
-fn _bitonic_sort_impl<T, F>(array: &mut [T], compare: F)
+fn _bitonic_sort_impl<T, F>(array: &mut [T], compare: F) -> Result<(), String>
 where
     T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    _bitonic_sort_recursive(array, 0, array.len(), false, compare)
+    let len = array.len() as isize;
+
+    if len != (len & -len) {
+        Err("This sort works only if the length of the array is 2^N.".to_string())
+    } else {
+        _bitonic_sort_recursive(array, 0, array.len(), false, compare);
+        Ok(())
+    }
 }
 
 fn _bitonic_sort_recursive<T, F>(array: &mut [T], low: usize, count: usize, asc: bool, compare: F)
