@@ -9,9 +9,9 @@
 /// ```rust
 /// use buldak::bitonic;
 ///
-/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
+/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21];
 /// bitonic::sort(&mut nums);
-/// assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
+/// assert_eq!(nums, [1, 2, 3, 4, 5, 21, 111, 234]);
 /// ```
 pub fn sort<T>(array: &mut [T]) -> Result<(), String>
 where
@@ -25,9 +25,9 @@ where
 /// ```rust
 /// use buldak::bitonic;
 ///
-/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
+/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21];
 /// bitonic::sort_reverse(&mut nums);
-/// assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1]);
+/// assert_eq!(nums, [234, 111, 21, 5, 4, 3, 2, 1]);
 /// ```
 pub fn sort_reverse<T>(array: &mut [T]) -> Result<(), String>
 where
@@ -42,9 +42,9 @@ where
 /// ```rust
 /// use buldak::bitonic;
 ///
-/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
+/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21];
 /// bitonic::sort_by(&mut nums, |l, r| l.cmp(r));
-/// assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
+/// assert_eq!(nums, [1, 2, 3, 4, 5, 21, 111, 234]);
 /// ```
 pub fn sort_by<T, F>(array: &mut [T], compare: F) -> Result<(), String>
 where
@@ -64,7 +64,7 @@ where
     if len != (len & -len) {
         Err("This sort works only if the length of the array is 2^N.".to_string())
     } else {
-        _bitonic_sort_recursive(array, 0, array.len(), false, compare);
+        _bitonic_sort_recursive(array, 0, array.len(), true, compare);
         Ok(())
     }
 }

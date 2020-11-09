@@ -9,7 +9,7 @@ cargo add buldak
 If not, you have to manually add the dependency to Cargo.toml.
 ```toml
 [dependencies]
-buldak = "0.27.0"
+buldak = "0.27.1"
 ```
 
 ## use
