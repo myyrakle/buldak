@@ -55,22 +55,52 @@ where
     _quick_sort_impl(array, compare)
 }
 
-fn _library_sort_impl<T, F>(array: &mut [T], compare: F)
+fn _library_sort<T, F>(array: &mut [T], n: usize, epsilon: f64, compare: F)
 where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
+    let epsilon = 1;
+
+    let s_len = ((1+epsilon) * array.len() as f64) as usize;
+    let mut buffer:Vec<Option<T>> = vec![None; s_len];
+
+    let mut i = 0;
+    let mut j = 0;
+
+    _library_sort_impl
+
+    while i<s_len && j <array.len() {
+        if buffer[i].is_some() {
+            array[j] = buffer[i].unwrap().to_owned();
+            j+=1;
+        }
+    }
 }
 
-fn _rebalance<T, F>(array: &mut [T], begin:usize, end:usize, compare: F)
+fn _library_sort_impl<T, F>(array: &mut [T], n: usize, epsilon: f64, compare: F)
 where
     T: std::cmp::Ord + std::clone::Clone,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    let r = end;
-    let w = end/2;
+    let mut goal = 1;
+    let mut pos = 0;
 
-    while r>=begin {
-        //array[w+]
+    let sLen = ((1+epsilon)*n as 64) as usize;
+
+    while pos < n {
+        for i in 1..=goal {
+
+        }
+
+        
+        goal *= 2;
     }
+}
+
+fn _rebalance<T, F>(array: &mut [T], n: usize, epsilon: f64, compare: F)
+where
+    T: std::cmp::Ord + std::clone::Clone,
+    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+{
 }
