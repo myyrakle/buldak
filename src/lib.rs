@@ -106,6 +106,9 @@ pub mod bitonic;
 #[path = "lib/quick.rs"]
 pub mod quick;
 
+#[path = "lib/pd_quick.rs"]
+pub mod pd_quick;
+
 #[path = "lib/merge.rs"]
 pub mod merge;
 
