@@ -1,19 +1,21 @@
 //! bitonic sort algorithm.
 //!
-//! **O(N²)**
+//! This sort works only if the length of the array is 2^N.
+//!
+//! **O(Nlog₂N)**
 
 /// Sort in ascending order using a bitonic sort algorithm.
 ///
 /// ```rust
 /// use buldak::bitonic;
 ///
-/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
+/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21];
 /// bitonic::sort(&mut nums);
-/// assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
+/// assert_eq!(nums, [1, 2, 3, 4, 5, 21, 111, 234]);
 /// ```
-pub fn sort<T>(array: &mut [T])
+pub fn sort<T>(array: &mut [T]) -> Result<(), String>
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
 {
     sort_by(array, |l, r| l.cmp(r))
 }
@@ -23,13 +25,13 @@ where
 /// ```rust
 /// use buldak::bitonic;
 ///
-/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
+/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21];
 /// bitonic::sort_reverse(&mut nums);
-/// assert_eq!(nums, [234, 111, 21, 13, 5, 4, 3, 2, 1]);
+/// assert_eq!(nums, [234, 111, 21, 5, 4, 3, 2, 1]);
 /// ```
-pub fn sort_reverse<T>(array: &mut [T])
+pub fn sort_reverse<T>(array: &mut [T]) -> Result<(), String>
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
 {
     sort_by(array, |l, r| l.cmp(r).reverse())
 }
@@ -40,29 +42,36 @@ where
 /// ```rust
 /// use buldak::bitonic;
 ///
-/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21, 13];
+/// let mut nums = [1, 4, 2, 3, 5, 111, 234, 21];
 /// bitonic::sort_by(&mut nums, |l, r| l.cmp(r));
-/// assert_eq!(nums, [1, 2, 3, 4, 5, 13, 21, 111, 234]);
+/// assert_eq!(nums, [1, 2, 3, 4, 5, 21, 111, 234]);
 /// ```
-pub fn sort_by<T, F>(array: &mut [T], compare: F)
+pub fn sort_by<T, F>(array: &mut [T], compare: F) -> Result<(), String>
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
     _bitonic_sort_impl(array, compare)
 }
 
-fn _bitonic_sort_impl<T, F>(array: &mut [T], compare: F)
+fn _bitonic_sort_impl<T, F>(array: &mut [T], compare: F) -> Result<(), String>
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    _bitonic_sort_recursive(array, 0, array.len(), true, compare)
+    let len = array.len() as isize;
+
+    if len != (len & -len) {
+        Err("This sort works only if the length of the array is 2^N.".to_string())
+    } else {
+        _bitonic_sort_recursive(array, 0, array.len(), true, compare);
+        Ok(())
+    }
 }
 
 fn _bitonic_sort_recursive<T, F>(array: &mut [T], low: usize, count: usize, asc: bool, compare: F)
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
     if count > 1 {
@@ -71,7 +80,7 @@ where
         _bitonic_sort_recursive(array, low, middle, true, compare.clone());
         _bitonic_sort_recursive(array, low + middle, middle, false, compare.clone());
 
-        _bitonic_merge(array, low, count, asc, compare)
+        _bitonic_merge(array, low, count, asc, compare);
     }
 }
 
@@ -79,14 +88,14 @@ mod utils;
 
 fn _bitonic_merge<T, F>(array: &mut [T], low: usize, count: usize, asc: bool, compare: F)
 where
-    T: std::cmp::Ord + std::clone::Clone,
+    T: std::cmp::Ord,
     F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
     if count > 1 {
         let middle = count / 2;
 
         for i in low..(low + middle) {
-            _compare_swap(array, i, i+middle, asc, compare.clone());
+            _compare_swap(array, i, i + middle, asc, compare.clone());
         }
 
         _bitonic_merge(array, low, middle, asc, compare.clone());
@@ -95,11 +104,11 @@ where
 }
 
 fn _compare_swap<T, F>(array: &mut [T], i: usize, j: usize, asc: bool, compare: F)
-    where
-        T: std::cmp::Ord + std::clone::Clone,
-        F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
+where
+    T: std::cmp::Ord,
+    F: Fn(&T, &T) -> std::cmp::Ordering + std::clone::Clone,
 {
-    if asc == (compare(&array[i], &array[j]) == std::cmp::Ordering::Greater)  {
+    if asc == (compare(&array[i], &array[j]) == std::cmp::Ordering::Greater) {
         utils::swap(array, i, j);
     }
 }
