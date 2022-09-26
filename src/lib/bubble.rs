@@ -3,6 +3,8 @@
 //! stable sort  
 //! **O(N²)**
 
+use std::future::Future;
+
 mod utils;
 
 /// Sort in ascending order using a bubble sort algorithm.
@@ -70,6 +72,28 @@ where
 
         while (i + 1) < last {
             match compare(&array[i], &array[i + 1]) {
+                std::cmp::Ordering::Less => (),
+                std::cmp::Ordering::Greater => utils::swap(array, i, i + 1),
+                std::cmp::Ordering::Equal => (),
+            }
+            i += 1;
+        }
+        last -= 1;
+    }
+}
+
+async fn _bubble_sort_impl_async<T, F>(array: &mut [T], compare: F)
+where
+    T: std::cmp::Ord,
+    F: Fn(&T, &T) -> Box<dyn Future<Output = std::cmp::Ordering>>,
+{
+    let mut last = array.len();
+
+    while 0 != last {
+        let mut i = 0;
+
+        while (i + 1) < last {
+            match compare(&array[i], &array[i + 1]).await {
                 std::cmp::Ordering::Less => (),
                 std::cmp::Ordering::Greater => utils::swap(array, i, i + 1),
                 std::cmp::Ordering::Equal => (),
