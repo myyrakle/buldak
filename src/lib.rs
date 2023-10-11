@@ -51,6 +51,7 @@ fn main()
 - bogo sort
 - sleep sort
 - stalin sort
+- pancake sort
 - ... more later
 
 ## link
@@ -132,3 +133,6 @@ pub mod sleep;
 
 #[path = "lib/stalin.rs"]
 pub mod stalin;
+
+#[path = "lib/pancake.rs"]
+pub mod pancake;
