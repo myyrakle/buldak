@@ -5,7 +5,7 @@
 
 mod utils;
 
-/// Sort in ascending order using a oddeven sort algorithm.
+/// Sort in ascending order using a pancake sort algorithm.
 ///
 /// ```rust
 /// use buldak::pancake;
@@ -22,7 +22,7 @@ where
     sort_by(array, |l, r| l.cmp(r))
 }
 
-/// Sort in descending order using a oddeven sort algorithm.
+/// Sort in descending order using a pancake sort algorithm.
 ///
 /// ```rust
 /// use buldak::pancake;
@@ -40,7 +40,7 @@ where
 }
 
 /// It takes a comparator function to determine the order,
-/// and sorts it using a oddeven sort algorithm.
+/// and sorts it using a pancake sort algorithm.
 ///
 /// ```rust
 /// use buldak::pancake;
@@ -76,9 +76,7 @@ where
 }
 
 // Reverses arr[0..i]
-fn _flip<T>(array: &mut [T], i: usize) {
-    let mut i = i;
-
+fn _flip<T>(array: &mut [T], mut i: usize) {
     let mut start = 0;
     while start < i {
         utils::swap(array, start, i);
@@ -95,7 +93,7 @@ where
     // Start from the complete
     // array and one by one
     // reduce current size by one
-    for i in (2..array.len()).rev() {
+    for i in (1..=array.len()).rev() {
         // Find index of the
         // maximum element in
         // arr[0..current_size-1]
@@ -106,7 +104,7 @@ where
         // current array if
         // it's not already
         // at the end
-        if max_index != i {
+        if max_index != i - 1 {
             // To move at the end,
             // first move maximum
             // number to beginning
@@ -115,7 +113,7 @@ where
             // Now move the maximum
             // number to end by
             // reversing current array
-            _flip(array, i);
+            _flip(array, i - 1);
         }
     }
 }
