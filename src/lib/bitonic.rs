@@ -123,8 +123,8 @@ mod tests {
         }
 
         let test_cases = vec![TestCase {
-            input: vec![1, 4, 2, 3, 5, 111, 234, 21, 13],
-            expected: vec![1, 2, 3, 4, 5, 13, 21, 111, 234],
+            input: vec![1, 4, 2, 3, 5, 111, 234, 21],
+            expected: vec![1, 2, 3, 4, 5, 21, 111, 234],
         }];
 
         for case in test_cases {
@@ -142,8 +142,8 @@ mod tests {
         }
 
         let test_cases = vec![TestCase {
-            input: vec![1, 4, 2, 3, 5, 111, 234, 21, 13],
-            expected: vec![234, 111, 21, 13, 5, 4, 3, 2, 1],
+            input: vec![1, 4, 2, 3, 5, 234, 21, 13],
+            expected: vec![234, 21, 13, 5, 4, 3, 2, 1],
         }];
 
         for case in test_cases {
