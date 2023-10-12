@@ -94,3 +94,43 @@ where
         first = shift;
     }
 }
+
+mod tests {
+    #[test]
+    fn sort_ascending() {
+        struct TestCase {
+            input: Vec<i32>,
+            expected: Vec<i32>,
+        }
+
+        let test_cases = vec![TestCase {
+            input: vec![1, 4, 2, 3, 5, 111, 234, 21, 13],
+            expected: vec![1, 2, 3, 4, 5, 13, 21, 111, 234],
+        }];
+
+        for case in test_cases {
+            let mut actual = case.input.clone();
+            super::sort(&mut actual);
+            assert_eq!(actual, case.expected);
+        }
+    }
+
+    #[test]
+    fn sort_descending() {
+        struct TestCase {
+            input: Vec<i32>,
+            expected: Vec<i32>,
+        }
+
+        let test_cases = vec![TestCase {
+            input: vec![1, 4, 2, 3, 5, 111, 234, 21, 13],
+            expected: vec![234, 111, 21, 13, 5, 4, 3, 2, 1],
+        }];
+
+        for case in test_cases {
+            let mut actual = case.input.clone();
+            super::sort_reverse(&mut actual);
+            assert_eq!(actual, case.expected);
+        }
+    }
+}
