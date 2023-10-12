@@ -86,7 +86,7 @@ where
     let mut goal = 1;
     let mut pos = 0;
 
-    let sLen = ((1+epsilon)*n as 64) as usize;
+    let sLen = ((1+epsilon)*n as i64) as usize;
 
     while pos < n {
         for i in 1..=goal {
